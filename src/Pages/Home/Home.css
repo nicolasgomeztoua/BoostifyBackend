@@ -1,0 +1,325 @@
+.Home-showcase {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.Home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 100px;
+}
+#Home-title {
+  font-size: 90.44px;
+  color: #000;
+  text-align: center;
+}
+#Home-subtitle {
+  font-size: 63.96px;
+  color: #df001b;
+  text-align: center;
+}
+
+@media screen and (max-width: 930px) {
+  .Home-container {
+    left: 0px;
+  }
+}
+@media screen and (max-width: 465px) {
+  #Home-title {
+    font-size: 48.83px;
+  }
+  #Home-subtitle {
+    font-size: 39.06px;
+  }
+}
+
+.btn1 {
+  /* Clean style */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--button-text-color);
+  cursor: pointer;
+  /* Clean style */
+
+  --button-text-color: var(--background-color);
+  --button-text-color-hover: var(--button-background-color);
+  --border-color: #7d8082;
+  --button-background-color: #ece8e1;
+  --highlight-color: turquoise;
+  --button-inner-border-color: transparent;
+  --button-bits-color: var(--background-color);
+  --button-bits-color-hover: var(--button-background-color);
+
+  position: relative;
+  padding: 8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.btn1::before,
+.btn1::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid var(--border-color);
+  transition: all 0.15s ease;
+}
+
+.btn1::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.btn1::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+.btn1:active,
+.btn1:focus {
+  outline: none;
+}
+
+.btn1:active::before,
+.btn1:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.btn1:active::before {
+  top: 3px;
+}
+
+.btn1:active::after {
+  bottom: 3px;
+}
+
+.btn1__inner {
+  position: relative;
+  display: block;
+  padding: 20px 30px;
+  background-color: var(--button-background-color);
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px var(--button-inner-border-color);
+}
+
+.btn1__inner::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: var(--button-bits-color);
+}
+
+.btn1__inner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: var(--button-bits-color);
+  transition: all 0.2s ease;
+}
+
+.btn1__slide {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: var(--highlight-color);
+  transform: skew(-15deg);
+  transition: all 0.2s ease;
+}
+
+.btn1__content {
+  position: relative;
+}
+
+.btn1:hover {
+  color: var(--button-text-color-hover);
+}
+
+.btn1:hover .btn1__slide {
+  width: calc(100% + 15px);
+}
+
+.btn1:hover .btn1__inner::after {
+  background-color: var(--button-bits-color-hover);
+}
+
+.btn1--light {
+  --button-background-color: var(--background-color);
+  --button-text-color: var(--highlight-color);
+  --button-inner-border-color: var(--highlight-color);
+  --button-text-color-hover: #ece8e1;
+  --button-bits-color-hover: #ece8e1;
+}
+.Home-intro {
+  padding: 2rem;
+  margin: 2rem;
+}
+.Home-intro h2 {
+  font-size: 63.96px;
+  text-align: center;
+}
+.icons {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.icon {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: turquoise;
+}
+
+.title-icon:hover {
+  transition-duration: 1s;
+  transform: scale(1.18);
+}
+.icon-section {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+  font-size: 31.99px;
+  color: turquoise;
+}
+.desc {
+  margin: 20px;
+  color: black;
+  min-width: 25vw;
+}
+@media screen and (max-width: 1000px) {
+  .icons {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+}
+/* ........................................................*/
+#verified {
+  margin-bottom: 10px;
+  color: turquoise;
+}
+/*..........................................................*/
+
+.FAQ-parallax {
+  min-width: 100vw;
+
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.FAQ-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100vw;
+  padding-left: 15vw;
+}
+
+.FAQ h3 {
+  font-size: 31.99px;
+  color: black;
+  text-shadow: 0.07em 0 white, 0 0.07em white, -0.07em 0 white, 0 -0.07em white,
+    -0.07em -0.07em white, -0.07em 0.07em white, 0.07em -0.07em white,
+    0.07em 0.07em white;
+}
+
+.FAQ p {
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black,
+    -0.07em -0.07em black, -0.07em 0.07em black, 0.07em -0.07em black,
+    0.07em 0.07em black;
+}
+
+.FAQ {
+  height: 300px;
+  width: 300px;
+}
+
+@media screen and (max-width: 1050px) {
+  .FAQ-container {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: stretch;
+  }
+  .FAQ-parallax {
+    height: 200vh;
+  }
+  .FAQ {
+    width: 100vw;
+    height: 400px;
+  }
+  .FAQ p {
+    max-width: 80vw;
+  }
+  .FAQ h3 {
+    max-width: 80vw;
+    margin-top: 50px;
+  }
+  #outro {
+    font-size: 31.99px;
+    width: 100vw;
+    display: flex;
+    justify-self: flex-start;
+    align-self: flex-start;
+    flex-direction: column;
+    padding-right: 130px;
+    padding-left: 0;
+    margin-right: 0px;
+    margin-left: 0;
+  }
+  .Home-intro {
+    font-size: 31.99px;
+  }
+}
+
+#testimonial-header {
+  text-align: center;
+}
+
+.Testimonials-intro {
+  font-size: 63.96px;
+  text-align: center;
+  border-bottom: 4px solid turquoise;
+  margin-top: 50px;
+}
+
+#our-word {
+  font-size: 31.99px;
+  color: #111111;
+  opacity: 0.7;
+}
+#our-users {
+  font-size: 63.96px;
+  border-bottom: 5px solid turquoise;
+  border-radius: 10px;
+  color: black;
+  opacity: 1;
+}

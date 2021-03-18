@@ -1,0 +1,102 @@
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  min-width: 300px;
+  max-width: 500px;
+  min-height: 350px;
+  background: #fff;
+  z-index: 100;
+  margin: 0 20px;
+  margin-bottom: 15px;
+}
+
+.testimonials-body {
+  margin: 0;
+
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  background: #111;
+  width: 350px;
+}
+.testimonials {
+  position: relative;
+  max-width: 100%;
+  -webkit-box-reflect: below 1px linear-gradient(transparent 70%, #0009);
+}
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-left {
+  background-image: none;
+}
+.card {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  background: #333;
+  text-align: center;
+  padding: 60px 40px;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(turquoise, #720105);
+  z-index: 1;
+  transition: 0.5s;
+}
+.card:hover .layer {
+  top: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  font-weight: bold;
+  font-style: italic;
+}
+.card .content p {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.card .content .imgBx {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.card .content h2 {
+  font-size: 18px;
+  color: #fff;
+}
+
+.card .content h2 span {
+  color: #03a9f4;
+  font-size: 14px;
+  transition: 0.5s;
+}
+.card:hover .content h2 span {
+  color: #fff;
+}
+@media screen and (max-width: 600px) {
+  .swiper-slide {
+    margin: 0 0px;
+    margin-bottom: 10px;
+  }
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: turquoise;
+}
