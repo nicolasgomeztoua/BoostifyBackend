@@ -105,7 +105,7 @@ const Register = ({ history }) => {
           </button>
 
           <span className="register-screen__subtext">
-            Already have an account? <Link to="/log-in">Login</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </span>
         </form>
       </div>

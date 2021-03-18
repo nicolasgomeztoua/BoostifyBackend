@@ -3,6 +3,7 @@ require("dotenv").config({ path: "./config.env" });
 const express = require("express");
 const mongoose = require("mongoose");
 const errorHandler = require("./middleware/error");
+const path = require("path");
 //Conect DB
 const connectDB = async () => {
   await mongoose.connect(process.env.MONGO_URI, {
@@ -18,13 +19,16 @@ const app = express();
 
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./build"));
-}
-
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("./build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 //Error Handdler (should be the last piece of middleware)
 app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
