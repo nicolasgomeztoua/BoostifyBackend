@@ -6,7 +6,7 @@ import "./RankBoost.css";
 import Footer from "../../Footer/Footer.jsx";
 import RankBoostProduct from "./RankBoostProduct";
 import ProdMenu from "../../ProdMenu/ProdMenu";
-
+import Navbar from "../../Navbar/Navbar";
 const RankBoost = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
 
@@ -27,6 +27,7 @@ const RankBoost = () => {
 
   return (
     <>
+      <Navbar></Navbar>
       <Parallax
         strength={-200}
         bgImage={fuseyImg}

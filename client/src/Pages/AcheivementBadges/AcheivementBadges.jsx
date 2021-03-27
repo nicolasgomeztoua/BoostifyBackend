@@ -4,7 +4,7 @@ import FuseyMobile from "../Images/fusyMobile.jpg";
 import { Parallax } from "react-parallax";
 import ".././RankBoost/RankBoost.css";
 import Footer from "../../Footer/Footer.jsx";
-
+import Navbar from "../../Navbar/Navbar";
 import ProdMenu from "../../ProdMenu/ProdMenu";
 import AcheivementBoostProduct from "./AcheivementBoostProduct";
 
@@ -28,6 +28,7 @@ const AcheivementBadges = () => {
 
   return (
     <>
+      <Navbar></Navbar>
       <Parallax
         strength={-200}
         bgImage={fuseyImg}

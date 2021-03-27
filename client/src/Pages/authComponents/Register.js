@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AuthComponents.css";
-
+import Navbar from "../../Navbar/Navbar";
 const Register = ({ history }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -12,17 +12,19 @@ const Register = ({ history }) => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      history.push("/log-in");
+      history.push("/login");
     }
   }, [history]);
 
   const registerHandler = async (e) => {
-    e.preventDeafult();
+    e.preventDefault();
+
     const config = {
       header: {
         "Content-Type": "application/json",
       },
     };
+
     if (password !== confirmpassword) {
       setPassword("");
       setConfirmPassword("");
@@ -34,12 +36,12 @@ const Register = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "/api/auth/register",
+        "https://secret-cove-64633.herokuapp.com/api/auth/register",
         { username, email, password },
         config
       );
       localStorage.setItem("authToken", data.token);
-      history.push("/");
+      history.push("/login");
     } catch (err) {
       setError(error.response.data.error);
       setTimeout(() => {
@@ -49,7 +51,8 @@ const Register = ({ history }) => {
   };
 
   return (
-    <div>
+    <>
+      <Navbar></Navbar>
       <div className="register-screen">
         <form onSubmit={registerHandler} className="register-screen__form">
           <h3 className="register-screen__title">Register</h3>
@@ -109,7 +112,7 @@ const Register = ({ history }) => {
           </span>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "../Dropdown/Dropdown";
+import { ExtraCheckBox } from "../Pages/RankBoost/RankedBoostProductElements";
+import { useHistory } from "react-router-dom";
+import { ShoppingCart } from "@styled-icons/remix-fill/ShoppingCart";
+import { useCart } from "../Pages/Cart/CartHandler";
 
-function Navbar() {
+const Navbar = () => {
+  let history = useHistory();
+  const cartItems = useCart();
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [displayCheckBox, setDisplayCheckBox] = useState("none");
+  const [displayButton, setDisplayButton] = useState(true);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      setLoggedIn(true);
+    } else if (!localStorage.getItem("authToken")) {
+      setLoggedIn(false);
+    }
+  }, []);
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -26,6 +43,32 @@ function Navbar() {
       setDropdown(false);
     }
   };
+
+  const logoutHandler = () => {
+    localStorage.removeItem("authToken");
+    history.push("/login");
+    setLoggedIn(false);
+  };
+
+  useEffect(() => {
+    if (loggedIn === true) {
+      setDisplayCheckBox("flex");
+    }
+    if (loggedIn === false) {
+      setDisplayCheckBox("none");
+    }
+    console.log(loggedIn);
+  }, [loggedIn]);
+
+  useEffect(() => {
+    if (loggedIn === true) {
+      setDisplayButton("none");
+    }
+    if (loggedIn === false) {
+      setDisplayButton("flex");
+    }
+    console.log(loggedIn);
+  }, [loggedIn]);
 
   return (
     <>
@@ -67,11 +110,36 @@ function Navbar() {
               Contact Us
             </Link>
           </li>
+
+          <div className="nav-item">
+            <Button className="nav-links" display={displayButton} />
+          </div>
+          <div
+            className="nav-item"
+            style={{
+              display: displayCheckBox,
+              flexDirection: "column",
+              justifyContent: "flex-center",
+              textAlign: "center",
+            }}
+          >
+            <ExtraCheckBox
+              onChange={logoutHandler}
+              style={{ marginLeft: "10px" }}
+            />
+            <p id="logout">logout</p>
+          </div>
+
+          <li className="nav-item">
+            <Link to="/cart">
+              <ShoppingCart id="cart-icon"></ShoppingCart>{" "}
+              <span id="cart-icon-number">{cartItems.length}</span>
+            </Link>
+          </li>
         </ul>
-        <Button />
       </nav>
     </>
   );
-}
+};
 
 export default Navbar;

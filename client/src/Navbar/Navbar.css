@@ -23,7 +23,7 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(6, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
@@ -35,6 +35,7 @@
 .nav-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 80px;
 }
 
@@ -140,10 +141,27 @@
     transition: 250ms;
   }
 
-  .btnNAV {
-    display: none;
-  }
   .fa-caret-down {
     display: none;
   }
+}
+
+#logout {
+  color: white;
+  text-decoration: none;
+}
+
+#cart-icon {
+  height: 50px;
+  color: white;
+  cursor: pointer;
+}
+#cart-icon-number {
+  position: relative;
+  bottom: 10px;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 100%;
+  font-size: 15px;
+  background: #e43403;
 }

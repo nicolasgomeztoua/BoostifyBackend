@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Home/Home";
-import Navbar from "./Navbar/Navbar";
+
 import KillBoost from "./Pages/KillBoost";
 //routing
 import PrivateRoute from "./Pages/authComponents/PrivateRoute";
@@ -16,12 +16,12 @@ import Register from "./Pages/authComponents/Register";
 import ForgotPassword from "./Pages/authComponents/ForgotPassword";
 import ResetPassword from "./Pages/authComponents/ResetPassword";
 import Checkout from "./Pages/authComponents/Checkout";
+import Cart from "./Pages/Cart/Cart.jsx";
 
 function App() {
   return (
     <Router>
       <div className="app">
-        <Navbar />
         <Switch>
           <PrivateRoute
             exact
@@ -50,6 +50,7 @@ function App() {
             exact
             component={ResetPassword}
           ></Route>
+          <Route path="/cart" exact component={Cart}></Route>
         </Switch>
       </div>
     </Router>

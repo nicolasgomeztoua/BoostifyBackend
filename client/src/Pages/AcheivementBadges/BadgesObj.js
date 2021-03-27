@@ -215,7 +215,7 @@ export const LegendsObj = [
     icon: Wraith,
   },
   {
-    name: `'Bloodhound`,
+    name: `Bloodhound`,
     icon: Bloodhound,
   },
   {

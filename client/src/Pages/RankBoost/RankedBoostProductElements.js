@@ -363,7 +363,7 @@ export const ExtraCheckBox = styled.input.attrs({
   position: relative;
   height: 40px;
   width: 80px;
-
+  display: ${(props) => (props.display ? props.display : "flex")};
   -webkit-appearance: none;
   background: #c6c6c6;
   outline: none;

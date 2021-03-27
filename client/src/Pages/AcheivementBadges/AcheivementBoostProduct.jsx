@@ -19,9 +19,11 @@ import {
   StepTwoWarningContainer,
   StepTwoWarning,
 } from "./BadgesElements";
-
+import { Link } from "react-router-dom";
 import { extraBadgesObj, LegendsObj, PopularBadgesObj } from "./BadgesObj";
 import "./Acheivementbadges.css";
+import { useDispatchCart } from "../Cart/CartHandler";
+import TwentyBomb from "../Images/20Bomb.png";
 
 const AcheivementBoostProduct = () => {
   const [checkedPopBadges, setPopBadges] = useState({});
@@ -31,6 +33,13 @@ const AcheivementBoostProduct = () => {
   const [searchFieldLegends, setSearchFieldLegends] = useState("");
   const [acheivementTotalMoney, setAcheivementTotalMoney] = useState(0);
   const [valid, setValid] = useState("flex");
+  const [totalExtraBadges, setTotalExtraBadges] = useState(0);
+  const [totalPopBadges, setTotalPopBadges] = useState(0);
+  const dispatch = useDispatchCart();
+  const addToCart = (item) => {
+    dispatch({ type: "ADD", item });
+  };
+
   const handleChangePop = (e) => {
     setPopBadges(
       {
@@ -78,35 +87,29 @@ const AcheivementBoostProduct = () => {
   ) {
     return checkedExtraBadges[x] !== false;
   });
-
+  let totalPop = 0;
   useEffect(() => {
     for (let i = 0; i < PopularBadgesObj.length; i++) {
       if (checkedPopBadges[PopularBadgesObj[i].name] === true) {
-        setAcheivementTotalMoney(
-          acheivementTotalMoney + PopularBadgesObj[i].price
-        );
-      }
-      if (checkedPopBadges[PopularBadgesObj[i].name] === false) {
-        setAcheivementTotalMoney(
-          acheivementTotalMoney - PopularBadgesObj[i].price
-        );
+        totalPop = PopularBadgesObj[i].price + totalPop;
+        setTotalPopBadges(totalPop);
       }
     }
   }, [checkedPopBadges]);
+  let totalExtra = 0;
   useEffect(() => {
     for (let i = 0; i < extraBadgesObj.length; i++) {
-      if (checkedPopBadges[extraBadgesObj[i].name] === true) {
-        setAcheivementTotalMoney(
-          acheivementTotalMoney + extraBadgesObj[i].price
-        );
-      }
-      if (checkedPopBadges[extraBadgesObj[i].name] === false) {
-        setAcheivementTotalMoney(
-          acheivementTotalMoney - extraBadgesObj[i].price
-        );
+      if (checkedExtraBadges[extraBadgesObj[i].name] === true) {
+        totalExtra = extraBadgesObj[i].price + totalExtra;
+        setTotalExtraBadges(totalExtra);
       }
     }
-  }, [checkedPopBadges]);
+  }, [checkedExtraBadges]);
+
+  useEffect(() => {
+    setAcheivementTotalMoney(totalExtraBadges + totalPopBadges);
+  });
+
   useEffect(() => {
     if (Object.values(checkedLegend)[0] === false) {
       setValid("flex");
@@ -286,15 +289,28 @@ const AcheivementBoostProduct = () => {
           </div>
           <DiscountContainer>Total</DiscountContainer>
           <TotalMoney>{acheivementTotalMoney}$</TotalMoney>
+
           <div class="button_cont" align="center">
-            <a
-              class="example_d"
-              href="add-website-here"
-              target="_blank"
-              rel="nofollow noopener"
-            >
-              Checkout
-            </a>
+            <Link to="./cart">
+              <button
+                onClick={() => {
+                  addToCart({
+                    title: "Acheivement Boost",
+                    price: acheivementTotalMoney,
+                    selectedPopBadges: filteredPopBadges,
+                    selectedExtraBadges: filteredExtraBadges,
+                    selectedLegend: Object.keys(checkedLegend),
+                    icon: TwentyBomb,
+                  });
+                }}
+                class="example_d"
+                href="add-website-here"
+                target="_blank"
+                rel="nofollow noopener"
+              >
+                Add to cart
+              </button>
+            </Link>
           </div>
         </TotalMoneyCard>
       </TotalContainer>

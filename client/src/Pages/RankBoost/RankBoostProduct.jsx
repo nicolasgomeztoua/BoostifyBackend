@@ -37,6 +37,8 @@ import {
   DiscountContainer,
   TotalMoney,
 } from "./RankedBoostProductElements";
+
+import { Link } from "react-router-dom";
 import masters from "../Images/Ranked_Tier6_Master.png";
 import diamond from "../Images/Ranked_Tier5_Diamond.png";
 import plat from "../Images/Ranked_Tier4_Platinum.png";
@@ -44,6 +46,7 @@ import gold from "../Images/Ranked_Tier3_Gold.png";
 import silver from "../Images/Ranked_Tier2_Silver.png";
 import bronze from "../Images/Ranked_Tier1_Bronze.jpeg";
 
+import { useDispatchCart } from "../Cart/CartHandler";
 /*  const [psSelected, setPSSelected] = useState(false);
   const [xboxSelected, setXboxSelected] = useState(false);
   const PSclick = () => {
@@ -361,6 +364,10 @@ const RankBoostProduct = () => {
     }
   }, [secondValue]);
 
+  const dispatch = useDispatchCart();
+  const addToCart = (item) => {
+    dispatch({ type: "ADD", item });
+  };
   return (
     <>
       <ProductContainer>
@@ -526,15 +533,32 @@ const RankBoostProduct = () => {
                   </ul>
                 </label>
               </TotalMoney>
+
               <div class="button_cont" align="center">
-                <a
-                  class="example_d"
-                  href="add-website-here"
-                  target="_blank"
-                  rel="nofollow noopener"
-                >
-                  Checkout
-                </a>
+                <Link to="./cart">
+                  <button
+                    onClick={() =>
+                      addToCart({
+                        title: "Rank Boost",
+                        price: Number(
+                          totalMoney +
+                            moneyMultiplierDuo +
+                            moneyMultiplierStream +
+                            moneyMultiplierPriority
+                        ).toFixed(2),
+                        firstValue: firstValue,
+                        secondValue: secondValue,
+                        icon: secondRankImg,
+                      })
+                    }
+                    class="example_d"
+                    href="add-website-here"
+                    target="_blank"
+                    rel="nofollow noopener"
+                  >
+                    Add to cart
+                  </button>
+                </Link>
               </div>
             </TotalMoneyCard>
           </TotalContainer>
