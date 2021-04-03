@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "./AuthComponents.css";
@@ -30,7 +29,7 @@ const ResetPassword = ({ history, match }) => {
 
     try {
       const { data } = await axios.put(
-        `https://secret-cove-64633.herokuapp.com//api/auth/passwordreset/${match.params.resetToken}`,
+        `https://secret-cove-64633.herokuapp.com/api/auth/passwordreset/${match.params.resetToken}`,
         {
           password,
         },
@@ -56,7 +55,7 @@ const ResetPassword = ({ history, match }) => {
         {error && <span className="error-message">{error} </span>}
         {success && (
           <span className="success-message">
-            {success} <Link to="/login">Login</Link>
+            {success} <a href="https://www.boostify.es">Login</a>
           </span>
         )}
         <div className="form-group">

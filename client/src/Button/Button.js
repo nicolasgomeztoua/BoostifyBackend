@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function Button(props) {
   return (
-    <Link to="login">
+    <Link to="login" style={{ textDecoration: "none" }}>
       <button className="btnNAV" style={{ display: props.display }}>
         Log in
       </button>

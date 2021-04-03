@@ -42,14 +42,6 @@ const RankBoost = () => {
         <div className="Services-Header">
           <h1 id="Rank-boost-title">Apex Legends Rank Boosting</h1>
           <h2 id="Rank-boost-subtitle"> Pred boosting guaranteed.</h2>
-          <div id="btn">
-            <button class="btn2">
-              <span class="btn2__inner">
-                <span class="btn2__slide"></span>
-                <span class="btn2__content">Get started now</span>
-              </span>
-            </button>
-          </div>
         </div>
       </Parallax>
       <ProdMenu></ProdMenu>

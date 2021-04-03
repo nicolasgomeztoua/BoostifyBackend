@@ -201,6 +201,7 @@ export const TotalMoneyCard = styled.div`
   width: 360px;
   @media (max-width: 415px) {
     margin-top: 0px;
+    width: 90vw;
   }
 `;
 

@@ -131,7 +131,7 @@ const Navbar = () => {
           </div>
 
           <li className="nav-item">
-            <Link to="/cart">
+            <Link to="/cart" style={{ textDecoration: "none" }}>
               <ShoppingCart id="cart-icon"></ShoppingCart>{" "}
               <span id="cart-icon-number">{cartItems.length}</span>
             </Link>

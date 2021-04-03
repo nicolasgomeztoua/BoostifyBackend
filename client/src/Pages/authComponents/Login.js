@@ -3,14 +3,22 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AuthComponents.css";
 import Navbar from "../../Navbar/Navbar";
+
+import {
+  StepTwoWarningContainer,
+  StepTwoWarning,
+} from "../RankBoost/RankedBoostProductElements";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [invalid, setInvalid] = useState("none");
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
       history.push("/");
+    } else {
+      setInvalid("flex");
     }
   }, [history]);
 
@@ -32,7 +40,7 @@ const Login = ({ history }) => {
 
       localStorage.setItem("authToken", data.token);
 
-      history.push("/");
+      history.push("/cart");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
@@ -44,6 +52,18 @@ const Login = ({ history }) => {
   return (
     <>
       <Navbar></Navbar>
+      <StepTwoWarningContainer
+        style={{ display: invalid, alignSelf: "flex-start" }}
+      >
+        Please login to add to cart and checkout
+        <StepTwoWarning>
+          <i
+            className="fa fa-times"
+            onClick={() => setInvalid("none")}
+            style={{ padding: "20px" }}
+          ></i>
+        </StepTwoWarning>
+      </StepTwoWarningContainer>
       <div className="login-screen">
         <form onSubmit={loginHandler} className="login-screen__form">
           <h3 className="login-screen__title">Login</h3>

@@ -72,13 +72,14 @@ const RankBoostProduct = () => {
   const [activeStream, setActiveStream] = useState(false);
   const [activePriority, setPriority] = useState(false);
   const [activeOffline, setActiveOffline] = useState(false);
-
+  const [filteredExtras, setFilteredExtras] = useState("");
   const [rankmultiplier, setRankMultiplier] = useState(0);
   const [totalpoints, setTotalPoints] = useState(0);
   const [totalMoney, setTotalMoney] = useState(0);
   const [moneyMultiplierDuo, setMoneyMultiplierDuo] = useState(0);
   const [moneyMultiplierStream, setMoneyMultiplierStream] = useState(0);
   const [moneyMultiplierPriority, setMoneyMultipliePriority] = useState(0);
+  const [completionTime, setCompletionTime] = useState("");
 
   const psCLick = () => {
     setColor({
@@ -101,8 +102,8 @@ const RankBoostProduct = () => {
     }
   }, [secondValue]);
   useEffect(() => {
-    setTotalMoney((totalpoints * rankmultiplier * 0.9) / 100);
-  }, [totalpoints, rankmultiplier]);
+    setTotalMoney((totalpoints * rankmultiplier * 0.32) / 100);
+  }, [totalpoints, rankmultiplier, firstValue]);
 
   useEffect(() => {
     if (activeDuo) {
@@ -296,7 +297,7 @@ const RankBoostProduct = () => {
     }
     if (secondValue >= 7200) {
       setSecondTier("IV");
-      setRankMultiplier(4.440506329);
+      setRankMultiplier(10.440506329);
     }
     if (secondValue > 7900) {
       setSecondTier("III");
@@ -319,6 +320,9 @@ const RankBoostProduct = () => {
     }
     if (secondValue >= 10000) {
       setSecondTier("GOAT");
+    }
+    if (secondValue > 10000 ) {
+      setRankMultiplier(26.56);
     }
   }, [secondValue, firstValue]);
 
@@ -364,10 +368,40 @@ const RankBoostProduct = () => {
     }
   }, [secondValue]);
 
+  useEffect(() => {
+    if (firstValue) {
+      setCompletionTime("48 hours");
+    }
+    if (secondValue > 11000) {
+      setCompletionTime("15 days");
+    }
+  }, [firstValue, secondValue]);
+
   const dispatch = useDispatchCart();
   const addToCart = (item) => {
     dispatch({ type: "ADD", item });
   };
+
+  let extrasArr = {
+    DuoQueue: activeDuo,
+    Offline: activeOffline,
+    Stream: activeStream,
+    priority: activePriority,
+  };
+  useEffect(() => {
+    let extrasArr2 = {
+      DuoQueue: activeDuo,
+      Offline: activeOffline,
+      Stream: activeStream,
+      priority: activePriority,
+    };
+    setFilteredExtras(
+      Object.fromEntries(
+        Object.entries(extrasArr2).filter(([key, value]) => value === true)
+      )
+    );
+  }, [activeDuo, activeOffline, activePriority, activeStream]);
+
   return (
     <>
       <ProductContainer>
@@ -396,7 +430,7 @@ const RankBoostProduct = () => {
             </StepOneTitle>
             <StepOneSLidersWrap>
               <InitialRank>
-                <h2 id="current-rank">Set Your current RP</h2>
+                <h2 id="current-rank">Set your current RP</h2>
                 <img src={firstRankImg} className="rank" alt="rank"></img>
 
                 <p id="tier">{firstTier}</p>
@@ -499,7 +533,7 @@ const RankBoostProduct = () => {
                   {firstValue}RP to {secondValue}RP
                 </span>
                 <br></br> Average Completion Time: <br></br>
-                <span>COMPLETION</span>
+                <span>{completionTime}</span>
               </TotalMoneyHeader>
               <DiscountContainer>PromoCode</DiscountContainer>
               <InputTyped
@@ -522,16 +556,6 @@ const RankBoostProduct = () => {
                   ).toFixed(2)}
                   {"$"}
                 </span>
-                <label class="dropdown">
-                  <div class="dd-button">Dropdown</div>
-                  <input type="checkbox" class="dd-input" id="test"></input>
-                  <ul class="dd-menu">
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>RUPEES</li>
-                    <li class="divider"></li>
-                  </ul>
-                </label>
               </TotalMoney>
 
               <div class="button_cont" align="center">
@@ -549,6 +573,8 @@ const RankBoostProduct = () => {
                         firstValue: firstValue,
                         secondValue: secondValue,
                         icon: secondRankImg,
+                        extrasArr: Object.entries(extrasArr),
+                        filteredExtras: Object.keys(filteredExtras),
                       })
                     }
                     class="example_d"

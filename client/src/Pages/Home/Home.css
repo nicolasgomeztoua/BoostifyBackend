@@ -18,11 +18,17 @@
   font-size: 90.44px;
   color: #000;
   text-align: center;
+  text-shadow: 0.07em 0 white, 0 0.07em white, -0.07em 0 white, 0 -0.07em white,
+    -0.07em -0.07em white, -0.07em 0.07em white, 0.07em -0.07em white,
+    0.07em 0.07em white;
 }
 #Home-subtitle {
   font-size: 63.96px;
-  color: #df001b;
+  color: white;
   text-align: center;
+  text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black,
+    -0.07em -0.07em black, -0.07em 0.07em black, 0.07em -0.07em black,
+    0.07em 0.07em black;
 }
 
 @media screen and (max-width: 930px) {
@@ -220,6 +226,14 @@
     grid-template-rows: 1fr 1fr 1fr;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .desc {
+    font-size: 18px;
+  }
+  .Home-intro {
+  }
+}
 /* ........................................................*/
 #verified {
   margin-bottom: 10px;
@@ -230,7 +244,7 @@
 .FAQ-parallax {
   min-width: 100vw;
 
-  height: 500px;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -270,11 +284,11 @@
     align-items: stretch;
   }
   .FAQ-parallax {
-    height: 200vh;
+    height: auto;
   }
   .FAQ {
     width: 100vw;
-    height: 400px;
+    height: auto;
   }
   .FAQ p {
     max-width: 80vw;
