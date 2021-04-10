@@ -285,7 +285,14 @@ const AcheivementBoostProduct = () => {
             width="250px"
           ></InputTyped>
           <div class="button_cont" align="center">
-            <button className="example_c"> Apply</button>
+            <button
+              className="example_c"
+              style={{ opacity: "0.4" }}
+              disabled={true}
+            >
+              {" "}
+              Not Applicable to Acheivement Boost
+            </button>
           </div>
           <DiscountContainer>Total</DiscountContainer>
           <TotalMoney>{acheivementTotalMoney}$</TotalMoney>

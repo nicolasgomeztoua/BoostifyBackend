@@ -15,10 +15,9 @@ import Login from "./Pages/authComponents/Login";
 import Register from "./Pages/authComponents/Register";
 import ForgotPassword from "./Pages/authComponents/ForgotPassword";
 import ResetPassword from "./Pages/authComponents/ResetPassword";
-
 import Cart from "./Pages/Cart/Cart.jsx";
+
 import ComingSoon from "./Pages/ComingSoon/ComingSoon";
-import ReactGA from "react-ga";
 
 function App() {
   return (

@@ -8,6 +8,7 @@ import { GameController } from "@styled-icons/entypo/GameController";
 import { Support } from "@styled-icons/boxicons-regular/Support";
 import { VerifiedUser } from "@styled-icons/material-twotone/VerifiedUser";
 import { QuestionAnswer } from "@styled-icons/material-twotone/QuestionAnswer";
+
 import { Parallax } from "react-parallax";
 import Horizon from "../Images/Horizon.jpg";
 import HorizonMobile from "../Images/Horizon2.jpg";
@@ -16,7 +17,8 @@ import Testimonials from "../../Testimonials/Testimonials";
 import { World } from "@styled-icons/boxicons-regular/World";
 import Footer from "../../Footer/Footer";
 import Navbar from "../../Navbar/Navbar";
-
+import WhoAreWe from "./WhoAreWe";
+import WhatIsBoosting from "./WhatIsBoosting";
 const Home = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
 
@@ -99,7 +101,7 @@ const Home = () => {
         <div className="icons">
           <li className="icon-section">
             <span className="desc">
-              We have a strong link with the pred community, so we are their
+              We have a strong link with the predator community, so we are their
               preferred platform as known members of the ecosystem. We can
               ensure service from the best.
             </span>
@@ -143,7 +145,7 @@ const Home = () => {
         </div>
         <h2 className="Home-intro" id="outro">
           {" "}
-          The preferred platform of the top 500 in the EU{" "}
+          The preferred platform of the top 750 in the EU{" "}
           <Verified id="verified" />{" "}
         </h2>
       </div>
@@ -178,7 +180,7 @@ const Home = () => {
                 favourite legend?
               </h3>
               <p>
-                Yes, we offer legend choice Acheivement Boost orders. Our
+                Yes, we offer legend choice in Acheivement Boost orders. Our
                 professional boosters will carry out your order playing on your
                 legend of choice.
               </p>
@@ -199,6 +201,8 @@ const Home = () => {
         </div>
       </Parallax>
 
+      <WhoAreWe></WhoAreWe>
+      <WhatIsBoosting></WhatIsBoosting>
       <div>
         <h2 className="Testimonials-intro">
           {" "}

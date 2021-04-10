@@ -40,7 +40,7 @@ const Cart = () => {
     (total, b) => Number(total) + Number(b.price),
     0
   );
-  console.log(process.env.SK);
+
   useEffect(() => {
     setTitles(
       items.map((element) => {
@@ -96,7 +96,9 @@ const Cart = () => {
 
   const potentialOrder = (e) => {
     const config = {
-      header: {
+      headers: {
+        "Access-Control-Allow-Origin":
+          "https://secret-cove-64633.herokuapp.com/api/auth/createorder",
         "Content-Type": "application/json",
       },
     };
@@ -117,6 +119,8 @@ const Cart = () => {
           region,
           dateCreated,
           extrasArr,
+          items,
+          totalPrice,
         },
         config
       );
@@ -236,7 +240,7 @@ const Cart = () => {
                           <br /> <span className="thin">{element.title}</span>
                           <br />
                           {element.selectedLegend ||
-                            `From ${element.firstValue}`}
+                            `From: ${element.firstValue}`}
                           <br />
                           <span className="thin small">
                             {element.selectedPopBadges ||

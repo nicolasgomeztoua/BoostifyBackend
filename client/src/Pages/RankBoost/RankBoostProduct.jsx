@@ -80,6 +80,16 @@ const RankBoostProduct = () => {
   const [moneyMultiplierStream, setMoneyMultiplierStream] = useState(0);
   const [moneyMultiplierPriority, setMoneyMultipliePriority] = useState(0);
   const [completionTime, setCompletionTime] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [opacity, setOpacity] = useState(1);
+
+  const handleDiscount = () => {
+    if (validPromo === "BOOSTIFY20") {
+      setTotalMoney(totalMoney / 1.2);
+      setDisabled(true);
+      setOpacity(0.4);
+    }
+  };
 
   const psCLick = () => {
     setColor({
@@ -321,7 +331,7 @@ const RankBoostProduct = () => {
     if (secondValue >= 10000) {
       setSecondTier("GOAT");
     }
-    if (secondValue > 10000 ) {
+    if (secondValue > 10000) {
       setRankMultiplier(26.56);
     }
   }, [secondValue, firstValue]);
@@ -541,9 +551,20 @@ const RankBoostProduct = () => {
                 fontSize="20px"
                 height="50px"
                 width="250px"
+                onChange={(e) => {
+                  setValidPromo(e.target.value);
+                }}
               ></InputTyped>
               <div class="button_cont" align="center">
-                <button className="example_c"> Apply</button>
+                <button
+                  className="example_c"
+                  onClick={handleDiscount}
+                  disabled={disabled}
+                  style={{ opacity: opacity }}
+                >
+                  {" "}
+                  Apply
+                </button>
               </div>
               <DiscountContainer>Total</DiscountContainer>
               <TotalMoney>
