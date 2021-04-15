@@ -7,9 +7,13 @@ import { CircleWithCross } from "@styled-icons/entypo/CircleWithCross";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { Stripe } from "@styled-icons/fa-brands/Stripe";
+import { ApplePay } from "@styled-icons/fa-brands/ApplePay";
 import Select from "react-select";
-
+import { GooglePay } from "@styled-icons/fa-brands/GooglePay";
+import { CreditCardAlt } from "@styled-icons/boxicons-solid/CreditCardAlt";
+import { Playstation } from "@styled-icons/fa-brands/Playstation";
+import { Xbox } from "@styled-icons/fa-brands/Xbox";
 import {
   StepTwoWarningContainer,
   StepTwoWarning,
@@ -30,6 +34,9 @@ const Cart = () => {
   const [PSNemail, setPSN] = useState(null);
   const [PSNPass, setPSNPass] = useState(null);
   const [region, setRegion] = useState(null);
+  const [platform, setPlatform] = useState(null);
+  const [xboxColor, setXboxcolor] = useState("white");
+  const [psColor, setPScolor] = useState("white");
   const [dateCreated, setDatecreated] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [invalid, setInvalid] = useState("flex");
@@ -121,6 +128,7 @@ const Cart = () => {
           extrasArr,
           items,
           totalPrice,
+          platform,
         },
         config
       );
@@ -176,11 +184,12 @@ const Cart = () => {
     }
   }, []);
 
-  const options = [
+  const optionsRegion = [
     { value: "EU", label: "EU" },
     { value: "NA", label: "NA" },
     { value: "Asia", label: "Asia" },
   ];
+
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
@@ -190,14 +199,19 @@ const Cart = () => {
     }),
   };
   useEffect(() => {
-    if (region === null || PSNPass === null || PSNemail === null) {
+    if (
+      region === null ||
+      PSNPass === null ||
+      PSNemail === null ||
+      platform === null
+    ) {
       setDisabled(true);
       setInvalid("flex");
     } else {
       setDisabled(false);
       setInvalid("none");
     }
-  }, [region, PSNPass, PSNemail]);
+  }, [region, PSNPass, PSNemail, platform]);
 
   if (totalPrice === 0) {
     return (
@@ -214,7 +228,17 @@ const Cart = () => {
       </>
     );
   }
-
+  const playClick = () => {
+    setPlatform("PlayStation Network");
+    setPScolor("#2E6DB4");
+    setXboxcolor("white");
+  };
+  const xClick = () => {
+    setPlatform("Xbox");
+    setXboxcolor("#107C10");
+    setPScolor("white");
+  };
+  console.log(region);
   return (
     <>
       <Navbar></Navbar>
@@ -285,21 +309,43 @@ const Cart = () => {
           </div>
           <div className="credit-info">
             <div className="credit-info-content">
-              <h2 id="order-summary">PSN Email</h2>
+              {" "}
+              <h2 id="order-summary">Select Your Platform</h2>
+              <div className="platform-select" style={{}}>
+                <div>
+                  <Playstation
+                    style={{
+                      height: "50px",
+                      color: psColor,
+                    }}
+                    onClick={playClick}
+                  ></Playstation>
+                </div>
+                <div>
+                  <Xbox
+                    style={{
+                      height: "50px",
+                      color: xboxColor,
+                    }}
+                    onClick={xClick}
+                  ></Xbox>
+                </div>
+              </div>
+              <h2 id="order-summary">{platform} Email</h2>
               <input
                 type="email"
                 class="input-field"
                 onChange={(e) => setPSN(e.target.value)}
               ></input>
-              <h2 id="order-summary">PSN Password</h2>
+              <h2 id="order-summary">{platform} Password</h2>
               <input
                 type="password"
                 class="input-field"
                 onChange={(e) => setPSNPass(e.target.value)}
               ></input>
-              <h2 id="order-summary">Select Your region</h2>
+              <h2 id="order-summary">Select Your Region</h2>
               <Select
-                options={options}
+                options={optionsRegion}
                 styles={customStyles}
                 onChange={(value) => setRegion(value.label)}
               />
@@ -330,7 +376,6 @@ const Cart = () => {
                 If 2-step-auth is enabled on your PSN account make sure to
                 disable it to prevent access problems
               </StepTwoWarningContainer>
-
               <button
                 type="button"
                 id="checkout-button"
@@ -341,6 +386,12 @@ const Cart = () => {
               >
                 Checkout with Stripe
               </button>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Stripe style={{ height: "50px" }}></Stripe>
+                <ApplePay style={{ height: "50px" }}></ApplePay>
+                <GooglePay style={{ height: "50px" }}></GooglePay>
+                <CreditCardAlt style={{ height: "50px" }}></CreditCardAlt>
+              </div>
             </div>
           </div>
         </div>

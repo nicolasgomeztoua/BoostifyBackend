@@ -113,8 +113,9 @@ const Navbar = () => {
               onClick={closeMobileMenu}
             >
               Contact Us
-            </Link>
+            </Link>{" "}
           </li>
+
           <li
             onClick={logoutHandler}
             className="nav-item"

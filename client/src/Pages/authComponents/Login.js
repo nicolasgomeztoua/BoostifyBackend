@@ -52,18 +52,7 @@ const Login = ({ history }) => {
   return (
     <>
       <Navbar></Navbar>
-      <StepTwoWarningContainer
-        style={{ display: invalid, alignSelf: "flex-start" }}
-      >
-        Please login to add to cart and checkout
-        <StepTwoWarning>
-          <i
-            className="fa fa-times"
-            onClick={() => setInvalid("none")}
-            style={{ padding: "20px" }}
-          ></i>
-        </StepTwoWarning>
-      </StepTwoWarningContainer>
+
       <div className="login-screen">
         <form onSubmit={loginHandler} className="login-screen__form">
           <h3 className="login-screen__title">Login</h3>

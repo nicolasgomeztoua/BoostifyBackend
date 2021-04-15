@@ -415,3 +415,336 @@
     grid-template-rows: 0.1fr 9fr;
   }
 }
+.whyUs-title {
+  font-size: 45.23px;
+  border-bottom: 5px solid turquoise;
+  border-radius: 10px;
+  color: black;
+  opacity: 1;
+  text-align: center;
+  padding: 0rem;
+  margin: 10vh;
+  width: 60vw;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.tabs {
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  background: white;
+  padding: 20px;
+
+  width: 95%;
+  height: auto;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+  min-width: 240px;
+}
+.tabs input[name="tab-control"] {
+  display: none;
+}
+.tabs .content section h2,
+.tabs ul li label {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 18px;
+  color: turquoise;
+}
+.tabs ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.tabs ul li {
+  box-sizing: border-box;
+  flex: 1;
+  width: 25%;
+
+  text-align: center;
+}
+.tabs ul li label {
+  transition: all 0.3s ease-in-out;
+  color: #929daf;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  -webkit-touch-callout: none;
+}
+.tabs ul li label br {
+  display: none;
+}
+.tabs ul li label svg {
+  fill: #929daf;
+  height: 1.2em;
+  vertical-align: bottom;
+  margin-right: 0.2em;
+  transition: all 0.2s ease-in-out;
+}
+.tabs ul li label:hover,
+.tabs ul li label:focus,
+.tabs ul li label:active {
+  outline: 0;
+  color: #bec5cf;
+}
+.tabs ul li label:hover svg,
+.tabs ul li label:focus svg,
+.tabs ul li label:active svg {
+  fill: #bec5cf;
+}
+.tabs .slider {
+  position: relative;
+  width: 25%;
+  transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+}
+.tabs .slider .indicator {
+  position: relative;
+
+  max-width: 70%;
+  margin: 0 auto;
+  height: 4px;
+  background: turquoise;
+  border-radius: 1px;
+}
+.tabs .content {
+  margin-top: 30px;
+}
+.tabs .content section {
+  display: none;
+  animation-name: content;
+  animation-direction: normal;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  line-height: 1.4;
+}
+.tabs .content section h2 {
+  color: turquoise;
+  display: none;
+}
+.tabs .content section h2::after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: turquoise;
+  margin-top: 5px;
+  left: 1px;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ ul
+  > li:nth-child(1)
+  > label {
+  cursor: default;
+  color: turquoise;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ ul
+  > li:nth-child(1)
+  > label
+  svg {
+  fill: turquoise;
+}
+@media (max-width: 600px) {
+  .tabs
+    input[name="tab-control"]:nth-of-type(1):checked
+    ~ ul
+    > li:nth-child(1)
+    > label {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+.tabs input[name="tab-control"]:nth-of-type(1):checked ~ .slider {
+  transform: translateX(0%);
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(1):checked
+  ~ .content
+  > section:nth-child(1) {
+  display: block;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ ul
+  > li:nth-child(2)
+  > label {
+  cursor: default;
+  color: turquoise;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ ul
+  > li:nth-child(2)
+  > label
+  svg {
+  fill: turquoise;
+}
+@media (max-width: 600px) {
+  .tabs
+    input[name="tab-control"]:nth-of-type(2):checked
+    ~ ul
+    > li:nth-child(2)
+    > label {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+.tabs input[name="tab-control"]:nth-of-type(2):checked ~ .slider {
+  transform: translateX(100%);
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(2):checked
+  ~ .content
+  > section:nth-child(2) {
+  display: block;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ ul
+  > li:nth-child(3)
+  > label {
+  cursor: default;
+  color: turquoise;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ ul
+  > li:nth-child(3)
+  > label
+  svg {
+  fill: turquoise;
+}
+@media (max-width: 600px) {
+  .tabs
+    input[name="tab-control"]:nth-of-type(3):checked
+    ~ ul
+    > li:nth-child(3)
+    > label {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+.tabs input[name="tab-control"]:nth-of-type(3):checked ~ .slider {
+  transform: translateX(200%);
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(3):checked
+  ~ .content
+  > section:nth-child(3) {
+  display: block;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(4):checked
+  ~ ul
+  > li:nth-child(4)
+  > label {
+  cursor: default;
+  color: turquoise;
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(4):checked
+  ~ ul
+  > li:nth-child(4)
+  > label
+  svg {
+  fill: turquoise;
+}
+@media (max-width: 600px) {
+  .tabs
+    input[name="tab-control"]:nth-of-type(4):checked
+    ~ ul
+    > li:nth-child(4)
+    > label {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+.tabs input[name="tab-control"]:nth-of-type(4):checked ~ .slider {
+  transform: translateX(300%);
+}
+.tabs
+  input[name="tab-control"]:nth-of-type(4):checked
+  ~ .content
+  > section:nth-child(4) {
+  display: block;
+}
+@keyframes content {
+  from {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@media (max-width: 1000px) {
+  .tabs ul li label {
+    white-space: initial;
+  }
+  .tabs ul li label br {
+    display: initial;
+  }
+  .tabs ul li label svg {
+    height: 1.5em;
+  }
+}
+
+.tabs ul li label {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.tabs .content {
+  margin-top: 20px;
+}
+.tabs .content section h2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "PT sans";
+  font-size: 31.99px;
+  text-align: center;
+}
+
+.whyUs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+}
+.whyUs-grid p {
+  font-size: 22.62px;
+  display: flex;
+  align-self: center;
+  text-align: center;
+}
+.whyUs-grid img {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+@media screen and (max-width: 730px) {
+  .whyUs-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .whyUs-grid img {
+    margin-top: 25px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .whyUs-grid img {
+    width: 250px;
+  }
+}

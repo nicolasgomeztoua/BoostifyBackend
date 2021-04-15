@@ -18,7 +18,7 @@ const RankBoost = () => {
   const [fuseyImg, setfuseyImg] = useState(Fusey);
 
   useEffect(() => {
-    if (windowInnerWidth >= 1281) {
+    if (windowInnerWidth >= 1279) {
       setfuseyImg(Fusey);
     } else {
       setfuseyImg(FuseyMobile);

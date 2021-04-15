@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Testimonials.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
@@ -11,12 +11,36 @@ import User1 from "../Pages/Images/3.jpg";
 import User2 from "../Pages/Images/4.jpg";
 import User3 from "../Pages/Images/6.jpg";
 import User4 from "../Pages/Images/21.jpg";
+import rev from "../Pages/Images/rev.png";
+import user6 from "../Pages/Images/user6.jpg";
+import threestars from "../Pages/Images/threeStars.png";
+import fourStars from "../Pages/Images/fourStars.png";
+import fiveStars from "../Pages/Images/fiveStars.png";
 import "swiper/components/pagination/pagination.scss";
+
 import "swiper/components/scrollbar/scrollbar.scss";
 
 SwiperCore.use([Navigation, Scrollbar, EffectCoverflow]);
 
 export const Testimonials = () => {
+  const [h, sh] = useState(0);
+  const [h1, sh1] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => {
+      const now = new Date().getTime();
+      const countDate = new Date("Apr 15 2021 19:01:01");
+      let gap = countDate - now;
+      let second = 1000;
+      let minute = second * 60;
+      let hour = minute * 60;
+      let day = hour * 24;
+
+      sh(Math.floor((gap % day) / hour) * -1);
+      sh1(Math.floor(((gap % day) / hour) * -1) - 2);
+    }, 1);
+  }, []);
+
   return (
     <Swiper
       grabCursor={true}
@@ -49,16 +73,93 @@ export const Testimonials = () => {
                       </div>
                       <div className="details">
                         <h2 style={{ marginTop: "10px" }}>
+                          {" "}
                           <i> -Anon</i>
                           <br />
                           <span> Bloodhound main</span>
-                        </h2>
+                          <br></br>{" "}
+                          <i>
+                            <h2 style={{ marginTop: "10px" }}>72h+ ago</h2>
+                          </i>
+                        </h2>{" "}
+                        <img
+                          style={{ width: "200px", height: "140px" }}
+                          src={fourStars}
+                          alt="review"
+                        ></img>
                       </div>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
 
+              <SwiperSlide>
+                <div className="swiper-slide">
+                  <div className="card">
+                    <div className="layer"> </div>
+                    <div className="content">
+                      <p>"Cheap fast and safe, im happy "</p>
+                      <div className="imgBx">
+                        <img src={user6} alt="testimonial user"></img>
+                      </div>
+                      <div className="details">
+                        <h2 style={{ marginTop: "10px" }}>
+                          {" "}
+                          <i> -Anon</i>
+                          <br />
+                          <span> Loba main</span>
+                          <br></br>{" "}
+                          <i>
+                            <h2 style={{ marginTop: "10px" }}>
+                              {h1} hours ago
+                            </h2>
+                          </i>
+                        </h2>{" "}
+                        <img
+                          style={{ width: "200px", height: "140px" }}
+                          src={fiveStars}
+                          alt="review"
+                        ></img>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper-slide">
+                  <div className="card">
+                    <div className="layer"> </div>
+                    <div className="content">
+                      <p>
+                        "I ordered a boost from plat to masters and it was done
+                        in 2 days, i cant believe the rank i was hardstuck in
+                        for countless seasons was just done in 2 days. Crazy
+                        stuff"
+                      </p>
+                      <div className="imgBx">
+                        <img src={rev} alt="testimonial user"></img>
+                      </div>
+                      <div className="details">
+                        <h2 style={{ marginTop: "10px" }}>
+                          {" "}
+                          <i> -Anon</i>
+                          <br />
+                          <span> Revenant main</span>
+                          <br></br>{" "}
+                          <i>
+                            <h2 style={{ marginTop: "10px" }}>{h} hours ago</h2>
+                          </i>
+                        </h2>{" "}
+                        <img
+                          style={{ width: "200px", height: "140px" }}
+                          src={fourStars}
+                          alt="review"
+                        ></img>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
               <SwiperSlide>
                 <div class="swiper-slide">
                   <div className="card">
@@ -76,8 +177,16 @@ export const Testimonials = () => {
                         <h2 style={{ marginTop: "10px" }}>
                           <i>DVN_Righteous</i>
                           <br />
-                          <span> Lifeline main</span>
+                          <span> Lifeline main</span> <br></br>{" "}
+                          <i>
+                            <h2 style={{ marginTop: "10px" }}>72h+ ago</h2>
+                          </i>
                         </h2>
+                        <img
+                          style={{ width: "200px", height: "140px" }}
+                          src={threestars}
+                          alt="review"
+                        ></img>
                       </div>
                     </div>
                   </div>
@@ -105,7 +214,16 @@ export const Testimonials = () => {
                           maXxNour
                           <br />
                           <span> Speed Feind</span>
+                          <br></br>{" "}
+                          <i>
+                            <h2 style={{ marginTop: "10px" }}>72h+ ago</h2>
+                          </i>
                         </h2>
+                        <img
+                          style={{ width: "200px", height: "140px" }}
+                          src={fiveStars}
+                          alt="review"
+                        ></img>
                       </div>
                     </div>
                   </div>
@@ -132,7 +250,17 @@ export const Testimonials = () => {
                           тистика
                           <br />
                           <span> Wraith main</span>
+                          <br></br>{" "}
+                          <i>
+                            <h2 style={{ marginTop: "10px" }}>72h+ ago</h2>
+                          </i>
                         </h2>
+
+                        <img
+                          style={{ width: "200px", height: "140px" }}
+                          src={fourStars}
+                          alt="review"
+                        ></img>
                       </div>
                     </div>
                   </div>

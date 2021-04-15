@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import {
   ProductContainer,
   ProductWrap,
-  StepOneContainer,
   StepOneTitle,
   F1,
-  PS,
-  XBX,
-  PC,
-  StepOneIcons,
   Step2Container,
   StepOneSLidersWrap,
   F2,
@@ -31,7 +26,6 @@ import {
   IconOffline,
   TotalContainer,
   TotalTitle,
-  F4,
   TotalMoneyCard,
   TotalMoneyHeader,
   DiscountContainer,
@@ -47,16 +41,7 @@ import silver from "../Images/Ranked_Tier2_Silver.png";
 import bronze from "../Images/Ranked_Tier1_Bronze.jpeg";
 
 import { useDispatchCart } from "../Cart/CartHandler";
-/*  const [psSelected, setPSSelected] = useState(false);
-  const [xboxSelected, setXboxSelected] = useState(false);
-  const PSclick = () => {
-    setPSSelected(!psSelected);
-    setXboxSelected(!xboxSelected);
-  }; */
-// const XboxClick = () => {
-//   setXboxSelected(!xboxSelected);
-//   setPSSelected(!psSelected);
-// };
+import CountDown from "../../CountDown/CountDown";
 
 const RankBoostProduct = () => {
   const [firstTier, setFirstTier] = useState("I");
@@ -65,7 +50,7 @@ const RankBoostProduct = () => {
   const [secondValue, setSecondValue] = useState(2000);
   const [secondRankImg, setSecondRankImg] = useState("");
   const [secondTier, setSecondTier] = useState("");
-  const [Pscolor, setColor] = useState("");
+
   const [invalid, setInvalid] = useState("none");
   const [validPromo, setValidPromo] = useState(false);
   const [activeDuo, setActiveDuo] = useState(false);
@@ -84,23 +69,18 @@ const RankBoostProduct = () => {
   const [opacity, setOpacity] = useState(1);
 
   const handleDiscount = () => {
-    if (validPromo === "BOOSTIFY20") {
-      setTotalMoney(totalMoney / 1.2);
+    if (validPromo === "boostify40") {
+      setTotalMoney(totalMoney / 1.4);
       setDisabled(true);
       setOpacity(0.4);
     }
   };
 
-  const psCLick = () => {
-    setColor({
-      color: "#003087",
-    });
-  };
   useEffect(() => {
     if (totalMoney < 0) {
       setTotalMoney(0);
     }
-  });
+  }, [totalMoney]);
   useEffect(() => {
     if (isNaN(firstValue)) {
       setFirstValue(4800);
@@ -307,32 +287,150 @@ const RankBoostProduct = () => {
     }
     if (secondValue >= 7200) {
       setSecondTier("IV");
-      setRankMultiplier(10.440506329);
+      setRankMultiplier(4.440506329);
     }
     if (secondValue > 7900) {
       setSecondTier("III");
       setRankMultiplier(4.974117647);
+    }
+    if (secondValue > 8100) {
+      setRankMultiplier(5.3);
+    }
+    if (secondValue > 8300) {
+      setRankMultiplier(5.6);
     }
     if (secondValue > 8500) {
       setRankMultiplier(5.889130435);
     }
     if (secondValue > 8600) {
       setSecondTier("II");
+      setRankMultiplier(6.0);
+    }
+    if (secondValue > 8700) {
+      setRankMultiplier(6.4);
+    }
+    if (secondValue > 8800) {
+      setRankMultiplier(6.8);
+    }
+    if (secondValue > 8900) {
+      setRankMultiplier(7.2);
+    }
+    if (secondValue > 9100) {
+      setRankMultiplier(7.3);
+    }
+    if (secondValue > 9200) {
+      setRankMultiplier(7.8);
     }
     if (secondValue > 9300) {
-      setRankMultiplier(10.53908046);
-    }
-    if (firstValue >= 7100) {
-      setRankMultiplier(14.53908046);
-    }
-    if (secondValue > 9300) {
+      setRankMultiplier(8.0);
       setSecondTier("I");
+    }
+    if (secondValue > 9400) {
+      setRankMultiplier(8.5);
+    }
+    if (secondValue > 9500) {
+      setRankMultiplier(9.0);
+    }
+    if (secondValue > 9600) {
+      setRankMultiplier(9.5);
+    }
+    if (secondValue > 9700) {
+      setRankMultiplier(9.7);
+    }
+
+    if (secondValue > 9800) {
+      setRankMultiplier(10);
+    }
+    if (secondValue > 9850) {
+      setRankMultiplier(10.3);
+    }
+    if (secondValue > 9900) {
+      setRankMultiplier(10.6);
+    }
+    if (secondValue > 9930) {
+      setRankMultiplier(10.8);
+    }
+    if (secondValue > 9960) {
+      setRankMultiplier(11.1);
+    }
+    if (secondValue > 9980) {
+      setRankMultiplier(11.3);
     }
     if (secondValue >= 10000) {
       setSecondTier("GOAT");
+      setRankMultiplier(11.53908046);
     }
-    if (secondValue > 10000) {
-      setRankMultiplier(26.56);
+    if (secondValue >= 10500) {
+      setRankMultiplier(11.93908046);
+    }
+    if (secondValue >= 11000) {
+      setRankMultiplier(12.43908046);
+    }
+    if (secondValue > 11500) {
+      setRankMultiplier(12.9);
+    }
+    if (secondValue > 12000) {
+      setRankMultiplier(13.4);
+    }
+    if (secondValue > 12500) {
+      setRankMultiplier(13.7);
+    }
+    if (secondValue > 13000) {
+      setRankMultiplier(14);
+    }
+    if (secondValue > 13500) {
+      setRankMultiplier(14.5);
+    }
+    if (secondValue > 14000) {
+      setRankMultiplier(15);
+    }
+    if (secondValue > 14300) {
+      setRankMultiplier(15.345839748);
+    }
+    if (secondValue > 14600) {
+      setRankMultiplier(15.721039485);
+    }
+    if (secondValue > 15000) {
+      setRankMultiplier(16.0927747);
+    }
+    if (secondValue > 15500) {
+      setRankMultiplier(16.472974);
+    }
+    if (secondValue > 16000) {
+      setRankMultiplier(16.8374957);
+    }
+    if (secondValue > 16500) {
+      setRankMultiplier(17.2038745);
+    }
+    if (secondValue > 17000) {
+      setRankMultiplier(17.59388494);
+    }
+    if (secondValue > 17500) {
+      setRankMultiplier(17.9304085);
+    }
+    if (secondValue > 17800) {
+      setRankMultiplier(18.29374893);
+    }
+    if (secondValue > 18000) {
+      setRankMultiplier(18.68938859);
+    }
+    if (secondValue > 18250) {
+      setRankMultiplier(18.9982384);
+    }
+    if (secondValue > 18500) {
+      setRankMultiplier(19.38478);
+    }
+    if (secondValue > 18700) {
+      setRankMultiplier(19.7439342);
+    }
+    if (secondValue > 19000) {
+      setRankMultiplier(20.38984);
+    }
+    if (secondValue > 19300) {
+      setRankMultiplier(20.69039);
+    }
+    if (secondValue > 19600) {
+      setRankMultiplier(21.00092748);
     }
   }, [secondValue, firstValue]);
 
@@ -417,26 +515,9 @@ const RankBoostProduct = () => {
       <ProductContainer>
         <div></div>
         <ProductWrap>
-          <StepOneContainer>
-            <StepOneTitle>
-              <F1></F1> Choose Your Platform
-            </StepOneTitle>
-            <StepOneIcons>
-              <PS onClick={psCLick} style={{ color: Pscolor.color }}></PS>
-              <div className="pcIcon">
-                <p> currently unavailable</p>
-                <XBX></XBX>
-              </div>
-              <div className="pcIcon">
-                <p> currently unavailable</p>
-                <PC></PC>
-              </div>
-            </StepOneIcons>
-          </StepOneContainer>
-
           <Step2Container>
             <StepOneTitle>
-              <F2></F2> Select Ranked Points to Boost
+              <F1></F1> Select Ranked Points to Boost
             </StepOneTitle>
             <StepOneSLidersWrap>
               <InitialRank>
@@ -489,7 +570,7 @@ const RankBoostProduct = () => {
 
           <ExtrasContainer>
             <ExtrasTitle>
-              <F3 />
+              <F2></F2>
               Choose additional services
             </ExtrasTitle>
             <ExtrasOptions>
@@ -534,7 +615,7 @@ const RankBoostProduct = () => {
 
           <TotalContainer>
             <TotalTitle>
-              <F4></F4>Check your total
+              <F3></F3> Check your total
             </TotalTitle>
             <TotalMoneyCard>
               <TotalMoneyHeader>
@@ -552,13 +633,12 @@ const RankBoostProduct = () => {
                 height="50px"
                 width="250px"
                 onChange={(e) => {
-                  setValidPromo(e.target.value);
+                  setValidPromo(e.target.value.toLowerCase());
                 }}
               ></InputTyped>
               <div class="button_cont" align="center">
                 <button
                   className="example_c"
-                  onClick={handleDiscount}
                   disabled={disabled}
                   style={{ opacity: opacity }}
                 >

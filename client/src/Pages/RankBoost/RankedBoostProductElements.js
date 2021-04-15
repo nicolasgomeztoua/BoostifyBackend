@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { DesktopComputer } from "@styled-icons/heroicons-solid/DesktopComputer";
-import { Xbox } from "@styled-icons/simple-icons/Xbox";
-import { Playstation } from "@styled-icons/simple-icons/Playstation";
+
 import { Filter1 } from "@styled-icons/material/Filter1";
 import { Filter2 } from "@styled-icons/material/Filter2";
 import { Filter3 } from "@styled-icons/material/Filter3";
@@ -34,28 +32,23 @@ export const ProductContainer = styled.div`
 export const ProductWrap = styled.div`
   padding: 2rem;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 10fr;
+  grid-template-rows: 1fr 0.5fr 0.5fr 0.3fr;
   background-color: #fdfef9;
-  height: 2700px;
+  height: auto;
 
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   @media (max-width: 1381px) {
-    height: 2700px;
     padding: 5px;
   }
   @media (max-width: 1317px) {
-    height: 2900px;
   }
   @media (max-width: 811px) {
-    height: 3400px;
     width: 92vw;
   }
   @media (max-width: 580px) {
-    height: 3500px;
     width: 92vw;
   }
   @media (max-width: 500px) {
-    height: 3800px;
     width: 92vw;
   }
   @media (max-width: 454px) {
@@ -68,14 +61,7 @@ export const ProductWrap = styled.div`
     width: 90vw;
   }
 `;
-export const StepOneContainer = styled.div`
-  display: grid;
-  margin-bottom: 15vh;
-  grid-template-rows: 1fr 1fr;
-  @media (max-width: 410px) {
-    grid-template-rows: 0.5fr 0.9fr;
-  }
-`;
+
 export const StepOneTitle = styled.h3`
   display: flex;
   justify-content: center;
@@ -88,6 +74,7 @@ export const StepOneTitle = styled.h3`
   line-height: 48px;
 
   margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
   text-transform: uppercase;
   @media (max-width: 415px) {
@@ -96,17 +83,6 @@ export const StepOneTitle = styled.h3`
     margin-bottom: 50px;
     max-width: 90vw;
     font-size: 31.23px;
-  }
-`;
-export const StepOneIcons = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding-top: 2rem;
-  @media (max-width: 420px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    padding-top: 0px;
-    height: 300px;
   }
 `;
 
@@ -119,36 +95,14 @@ export const F1 = styled(Filter1)`
     margin-left: 15px;
   }
 `;
-export const PS = styled(Playstation)`
-  height: 75px;
-  width: 75px;
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  margin-bottom: 8px;
-`;
-export const XBX = styled(Xbox)`
-  height: 75px;
-  color: grey;
-  display: flex;
-  justify-self: center;
-  margin-bottom: 8px;
-`;
-export const PC = styled(DesktopComputer)`
-  height: 75px;
-  color: grey;
-  display: flex;
-  justify-self: center;
-  margin-bottom: 8px;
-`;
 
 export const Step2Container = styled.div`
   display: grid;
 
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1fr;
   @media (max-width: 810px) {
-    height: 2000px;
-    margin-top: -100px;
+    height: auto;
+
     justify-content: flex-start;
   }
 `;
@@ -176,6 +130,7 @@ export const InitialRank = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-right: 10px;
+  height: 700px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   @media (max-width: 810px) {
     width: 100%;
@@ -192,6 +147,7 @@ export const DesiredRankBoost = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-left: 10px;
+  height: 700px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   @media (max-width: 810px) {
     width: 100%;
@@ -310,15 +266,14 @@ export const StepTwoWarning = styled.span`
 
 export const ExtrasContainer = styled.div`
   display: grid;
-  grid-template-rows: 1fr 2fr;
-  @media (max-width: 410px) {
-  }
+  grid-template-rows: 1fr 1fr;
 `;
 export const ExtrasTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  align-self: flex-end;
+  height: 100px;
   color: #111;
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 45.23px;
@@ -340,12 +295,13 @@ export const ExtrasOptions = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: flex-end;
+  height: 320px;
   @media (max-width: 720px) {
     grid-template-columns: 1fr 1fr;
   }
   @media (max-width: 420px) {
     transform: scale(0.8);
-    margin-bottom: 50px;
+
     width: 95vw;
   }
 `;
@@ -355,6 +311,7 @@ export const ExtraIconButtonWrap = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  height: 120px;
 `;
 export const ExtraCheckBox = styled.input.attrs({
   type: "checkbox",
@@ -427,9 +384,10 @@ export const IconSpeed = styled(Speed)`
 `;
 export const TotalContainer = styled.div`
   display: grid;
-  grid-template-rows: 1fr 0.1fr;
+  grid-template-rows: 1fr;
   align-items: flex-start;
   height: 300px;
+
   @media (max-width: 420px) {
     height: 400px;
   }

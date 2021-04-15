@@ -1,22 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./Pages/Home/Home";
 
-import KillBoost from "./Pages/KillBoost";
 //routing
 import PrivateRoute from "./Pages/authComponents/PrivateRoute";
 ///////////////////////////////////////////////////////////////
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import RankBoost from "./Pages/RankBoost/RankBoost";
 import AcheivementBadges from "./Pages/AcheivementBadges/AcheivementBadges.jsx";
-import WinBoost from "./Pages/WinBoost";
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/authComponents/Login";
 import Register from "./Pages/authComponents/Register";
 import ForgotPassword from "./Pages/authComponents/ForgotPassword";
 import ResetPassword from "./Pages/authComponents/ResetPassword";
 import Cart from "./Pages/Cart/Cart.jsx";
-
+import Blog from "./Pages/Blog/Blog";
 import ComingSoon from "./Pages/ComingSoon/ComingSoon";
 
 function App() {
@@ -25,8 +23,8 @@ function App() {
       <Router>
         <div className="app">
           <Switch>
-            <PrivateRoute exact path="/cart" component={Cart}></PrivateRoute>
-            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/cart" component={Cart}></Route>
+            <Route path="/" exact component={Home}></Route>
             <Route path="/rank-boosting" exact component={RankBoost}></Route>
             <Route path="/contact-us" exact component={ContactUs}></Route>
             <Route path="/kills-boosting" exact component={ComingSoon}></Route>
@@ -48,6 +46,7 @@ function App() {
               exact
               component={ResetPassword}
             ></Route>
+            <Route path="/blog" exact component={Blog}></Route>
           </Switch>
         </div>{" "}
       </Router>

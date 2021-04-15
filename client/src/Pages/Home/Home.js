@@ -19,6 +19,8 @@ import Footer from "../../Footer/Footer";
 import Navbar from "../../Navbar/Navbar";
 import WhoAreWe from "./WhoAreWe";
 import WhatIsBoosting from "./WhatIsBoosting";
+import WhyUs from "./WhyUs";
+import { Helmet } from "react-helmet";
 const Home = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
 
@@ -30,7 +32,7 @@ const Home = () => {
   const [horizonImg, sethorizonImg] = useState(Horizon);
 
   useEffect(() => {
-    if (windowInnerWidth >= 1324) {
+    if (windowInnerWidth >= 1279) {
       sethorizonImg(Horizon);
     } else {
       sethorizonImg(HorizonMobile);
@@ -58,8 +60,19 @@ const Home = () => {
     height: 100px;
     color: turquoise;
   `;
+
   return (
     <div>
+      <Helmet>
+        <title>
+          Boostify | Cheap Apex Legends Boosting Services Playstation
+        </title>
+        <meta
+          name="description"
+          content="Get boosted by our professionals for a cheap price and achieve higher Ranks in Apex Legends. Our professionals consist of only All-seasons Apex predators. Veterans. 24/7 Live Chat Support. Cheap. Get boosted by the best. Same Day Deliver Ranked boost and Badge boost."
+        />
+        <meta name="theme-color" content="#008f68" />
+      </Helmet>
       <Navbar />
       <Parallax
         strength={-300}
@@ -92,7 +105,11 @@ const Home = () => {
         </div>{" "}
       </Parallax>
       {/* ///////////////////////////////////// */}
-
+      <div className="home-banner">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <div className="Home-intro">
         <h2 id="Home-subtitle" style={{ color: "black", textShadow: "none" }}>
           {" "}
@@ -131,7 +148,7 @@ const Home = () => {
           <li className="icon-section">
             <span className="desc">
               We take the security of our customers very seriously. Ensuring we
-              precatiouisly preform the task for the quickest most hassle free
+              precautiously perform the task for the quickest, most hassle-free
               experience we can deliver; Trust is our asset.{" "}
             </span>
             <div className="title-icon">
@@ -169,8 +186,8 @@ const Home = () => {
               <p>
                 It really depends on the order. But speaking in general terms we
                 start within an hour of purchase and complete orders within
-                those same 24hours. Our support team will be able to accuratley
-                asses the ETA of your particular order.
+                those same 24hours. Our support team will be able to accurately
+                assess the ETA of your particular order.
               </p>
             </div>
 
@@ -203,6 +220,7 @@ const Home = () => {
 
       <WhoAreWe></WhoAreWe>
       <WhatIsBoosting></WhatIsBoosting>
+      <WhyUs></WhyUs>
       <div>
         <h2 className="Testimonials-intro">
           {" "}
