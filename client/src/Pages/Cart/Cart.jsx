@@ -213,21 +213,6 @@ const Cart = () => {
     }
   }, [region, PSNPass, PSNemail, platform]);
 
-  if (totalPrice === 0) {
-    return (
-      <>
-        <Navbar></Navbar>
-        <div className="failed-cart-contaier">
-          <h1 id="empty">Your cart is empty </h1>
-          <Link to="./">
-            {" "}
-            <button className="example_d"> Go Back Home?</button>
-          </Link>
-        </div>
-        <Footer footerColor="turquoise"></Footer>
-      </>
-    );
-  }
   const playClick = () => {
     setPlatform("PlayStation Network");
     setPScolor("#2E6DB4");
@@ -238,7 +223,23 @@ const Cart = () => {
     setXboxcolor("#107C10");
     setPScolor("white");
   };
-  console.log(region);
+
+  if (totalPrice === 0) {
+    return (
+      <>
+        <Navbar></Navbar>
+        <div className="failed-cart-contaier">
+          <h1 id="empty">Your cart is empty </h1>
+          <Link to="/">
+            {" "}
+            <button className="example_d"> Go Back Home?</button>
+          </Link>
+        </div>
+        <Footer footerColor="turquoise"></Footer>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar></Navbar>

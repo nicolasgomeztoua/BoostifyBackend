@@ -20,7 +20,10 @@ import Navbar from "../../Navbar/Navbar";
 import WhoAreWe from "./WhoAreWe";
 import WhatIsBoosting from "./WhatIsBoosting";
 import WhyUs from "./WhyUs";
+import Featured from "./Featured";
 import { Helmet } from "react-helmet";
+
+import Stats from "./stats";
 const Home = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
 
@@ -105,11 +108,8 @@ const Home = () => {
         </div>{" "}
       </Parallax>
       {/* ///////////////////////////////////// */}
-      <div className="home-banner">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <Stats></Stats>
+      <Featured></Featured>
       <div className="Home-intro">
         <h2 id="Home-subtitle" style={{ color: "black", textShadow: "none" }}>
           {" "}

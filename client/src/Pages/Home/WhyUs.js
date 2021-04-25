@@ -112,7 +112,7 @@ const WhyUs = () => {
                 The CEO behind this project has been a predator from seasons
                 2-8. Throughout he has devloped a strong relationship with other
                 predators through their competitive spirit. What we wanted to
-                acheive with Boostify is a direct connection between a customer
+                achieve with Boostify is a direct connection between a customer
                 and the best boosters on the market. With no leeches in between.
               </p>
               <img src={pred} alt="predator"></img>
@@ -124,7 +124,7 @@ const WhyUs = () => {
               <p>
                 All our Boosters are required to connect to our VPN server
                 before starting the boosting process. We ensure privacy and
-                security at all times from our professionals. Then inhertly they
+                security at all times from our professionals. Then inherently they
                 can proceed to decimate their lobbies.
               </p>
               <VpnLock
@@ -143,7 +143,7 @@ const WhyUs = () => {
             <div className="whyUs-grid">
               <p>
                 As soon as we get an order we notify all our boosters of an
-                opening. Depending on availablity the maximun time before your
+                opening. Depending on availablity the maximum time before your
                 order is started will be 24 hours. And we usually finish the
                 order within those same 48h. We dont want players who love
                 playing the game to stop for any more than they need to.

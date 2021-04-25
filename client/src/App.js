@@ -16,12 +16,22 @@ import ResetPassword from "./Pages/authComponents/ResetPassword";
 import Cart from "./Pages/Cart/Cart.jsx";
 import Blog from "./Pages/Blog/Blog";
 import ComingSoon from "./Pages/ComingSoon/ComingSoon";
+import Sucess from "./Pages/Sucess/Sucess";
+import Profile from "./Pages/Profile/Profile";
 
 function App() {
   return (
     <>
       <Router>
         <div className="app">
+          <Route
+            path="/"
+            render={({ location }) => {
+              window.gtag("config", "AW-388171063", {
+                page_path: location.pathname + location.search,
+              });
+            }}
+          />
           <Switch>
             <Route exact path="/cart" component={Cart}></Route>
             <Route path="/" exact component={Home}></Route>
@@ -47,6 +57,8 @@ function App() {
               component={ResetPassword}
             ></Route>
             <Route path="/blog" exact component={Blog}></Route>
+            <Route path="/success" exact component={Sucess}></Route>
+            <Route path="/profile" exact component={Profile}></Route>
           </Switch>
         </div>{" "}
       </Router>

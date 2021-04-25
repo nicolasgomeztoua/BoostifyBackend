@@ -228,8 +228,6 @@
   .desc {
     font-size: 18px;
   }
-  .Home-intro {
-  }
 }
 /* ........................................................*/
 #verified {
@@ -746,5 +744,115 @@
 @media screen and (max-width: 500px) {
   .whyUs-grid img {
     width: 250px;
+  }
+}
+
+.home-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100vw;
+  height: auto;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+.home-banner div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  flex-direction: column;
+}
+.home-banner div:hover {
+  transition-duration: 1s;
+  transform: scale(1.18);
+}
+.home-banner div p {
+  text-align: center;
+  font-size: 45.23px;
+  color: black;
+  border-bottom: 5px solid turquoise;
+}
+
+@media screen and (max-width: 586px) {
+  .home-banner div p {
+    text-align: center;
+    font-size: 22.62px;
+    color: black;
+    border-bottom: 5px solid turquoise;
+  }
+}
+.featured-container {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(-45deg, #40e0d0, #2c9d8f, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border: 10px solid turquoise;
+  border-radius: 100px;
+  margin: auto;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.featured-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: auto;
+}
+.featured-wrap p {
+  padding: 20px;
+  text-align: center;
+  font-size: 38.23px;
+  color: white;
+  text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black,
+    -0.07em -0.07em black, -0.07em 0.07em black, 0.07em -0.07em black,
+    0.07em 0.07em black;
+  line-height: 55px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+#featuredbooster {
+  transform: scale(0.9);
+}
+@media screen and (max-width: 1270px) {
+  .featured-wrap {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  #featuredbooster {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 940px) {
+  #featuredbooster {
+    
+    width: 600px;
+  }
+}
+@media screen and (max-width: 750px) {
+  #featuredbooster {
+    width: 80vw;
+  }
+}
+@media screen and (max-width: 550px) {
+  .featured-wrap p {
+    font-size: 22.62px;
+    line-height: 30px;
   }
 }

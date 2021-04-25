@@ -14,7 +14,8 @@ import {
   SocialLogo,
   WebsiteRights,
 } from "./FooterElements";
-
+import ssl from "../Pages/Images/ssls.png";
+import payment from "../Pages/Images/payment-methods.png";
 const Footer = ({ footerColor }) => {
   console.log(footerColor);
   return (
@@ -74,7 +75,9 @@ const Footer = ({ footerColor }) => {
               </FooterLinkItems>
             </FooterLinksWrapper>
           </FooterLinksContainer>
-
+          <img src={ssl} alt="ssl secured" style={{ width: "75px" }}></img>
+          <p>SSL SECURED</p>
+          <img src={payment} alt="ssl secured" style={{ width: "300px" }}></img>
           <SocialMedia>
             <SocialMediaWrap>
               <SocialLogo>
@@ -82,8 +85,8 @@ const Footer = ({ footerColor }) => {
               </SocialLogo>
               <WebsiteRights>
                 Boostify © {new Date().getFullYear()}. All rights reserved.
-              </WebsiteRights>
-            </SocialMediaWrap>
+              </WebsiteRights>{" "}
+            </SocialMediaWrap>{" "}
           </SocialMedia>
         </FooterWrap>
       </FooterContainer>

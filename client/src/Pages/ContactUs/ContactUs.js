@@ -94,7 +94,7 @@ const Contact = ({ history }) => {
           </div>
           <div className="form-group">
             <label htmlFor="text">Your question:</label>
-            <input
+            <textarea
               type="text"
               required
               id="ticket"
