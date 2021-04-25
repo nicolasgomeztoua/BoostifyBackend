@@ -19,6 +19,20 @@ import {
   StepTwoWarningContainer,
   StepTwoWarning,
 } from "./BadgesElements";
+
+import {
+  ExtrasTitle,
+  F3,
+  ExtrasContainer,
+  ExtrasOptions,
+  ExtraIconButtonWrap,
+  ExtraCheckBox,
+  IconDuo,
+  IconDescWrapper,
+  IconStream,
+  IconSpeed,
+  IconOffline,
+} from "../RankBoost/RankedBoostProductElements";
 import { Link } from "react-router-dom";
 import { extraBadgesObj, LegendsObj, PopularBadgesObj } from "./BadgesObj";
 import "./Acheivementbadges.css";
@@ -35,6 +49,14 @@ const AcheivementBoostProduct = () => {
   const [valid, setValid] = useState("flex");
   const [totalExtraBadges, setTotalExtraBadges] = useState(0);
   const [totalPopBadges, setTotalPopBadges] = useState(0);
+  const [moneyMultiplierDuo, setMoneyMultiplierDuo] = useState(0);
+  const [moneyMultiplierStream, setMoneyMultiplierStream] = useState(0);
+  const [moneyMultiplierPriority, setMoneyMultipliePriority] = useState(0);
+  const [activeDuo, setActiveDuo] = useState(false);
+  const [activeStream, setActiveStream] = useState(false);
+  const [activePriority, setPriority] = useState(false);
+  const [activeOffline, setActiveOffline] = useState(false);
+  const [filteredExtras, setFilteredExtras] = useState("");
   const dispatch = useDispatchCart();
   const addToCart = (item) => {
     dispatch({ type: "ADD", item });
@@ -95,7 +117,8 @@ const AcheivementBoostProduct = () => {
         setTotalPopBadges(totalPop);
       }
     }
-  }, [checkedPopBadges]);
+  }, [checkedPopBadges, checkedExtraBadges]);
+
   let totalExtra = 0;
   useEffect(() => {
     for (let i = 0; i < extraBadgesObj.length; i++) {
@@ -104,7 +127,7 @@ const AcheivementBoostProduct = () => {
         setTotalExtraBadges(totalExtra);
       }
     }
-  }, [checkedExtraBadges]);
+  }, [checkedExtraBadges, checkedPopBadges]);
 
   useEffect(() => {
     setAcheivementTotalMoney(totalExtraBadges + totalPopBadges);
@@ -118,6 +141,63 @@ const AcheivementBoostProduct = () => {
       setValid("none");
     }
   }, [checkedLegend]);
+
+  useEffect(() => {
+    if (Object.values(checkedPopBadges).includes(true) === false) {
+      setTotalPopBadges(0);
+    }
+  }, [checkedPopBadges]);
+  useEffect(() => {
+    if (Object.values(checkedExtraBadges).includes(true) === false) {
+      setTotalExtraBadges(0);
+    }
+  }, [checkedExtraBadges]);
+
+  useEffect(() => {
+    if (activeDuo) {
+      setMoneyMultiplierDuo(acheivementTotalMoney * 0.75);
+    }
+    if (!activeDuo) {
+      setMoneyMultiplierDuo(0);
+    }
+  }, [activeDuo, acheivementTotalMoney]);
+
+  useEffect(() => {
+    if (activePriority) {
+      setMoneyMultipliePriority(acheivementTotalMoney * 0.25);
+    }
+    if (!activePriority) {
+      setMoneyMultipliePriority(0);
+    }
+  }, [activePriority, acheivementTotalMoney]);
+
+  useEffect(() => {
+    if (activeStream) {
+      setMoneyMultiplierStream(acheivementTotalMoney * 0.15);
+    }
+    if (!activeStream) {
+      setMoneyMultiplierStream(0);
+    }
+  }, [activeStream, acheivementTotalMoney]);
+  let extrasArr = {
+    DuoQueue: activeDuo,
+    Offline: activeOffline,
+    Stream: activeStream,
+    priority: activePriority,
+  };
+  useEffect(() => {
+    let extrasArr2 = {
+      DuoQueue: activeDuo,
+      Offline: activeOffline,
+      Stream: activeStream,
+      priority: activePriority,
+    };
+    setFilteredExtras(
+      Object.fromEntries(
+        Object.entries(extrasArr2).filter(([key, value]) => value === true)
+      )
+    );
+  }, [activeDuo, activeOffline, activePriority, activeStream]);
 
   return (
     <>
@@ -249,6 +329,43 @@ const AcheivementBoostProduct = () => {
           </BadgesSelectionContainers>
         </BadgesWrap>
       </BadgesContainer>
+      <ExtrasContainer>
+        <ExtrasTitle>Choose additional services</ExtrasTitle>
+        <ExtrasOptions>
+          <ExtraIconButtonWrap>
+            <IconDescWrapper>
+              <IconOffline></IconOffline>
+              <ExtraCheckBox onClick={() => setActiveOffline(!activeOffline)} />
+              <p className="ExtraDesc">Appear offline</p>
+              <p className="ExtraDesc"> FREE</p>
+            </IconDescWrapper>
+          </ExtraIconButtonWrap>
+          <ExtraIconButtonWrap>
+            <IconDescWrapper>
+              <IconDuo></IconDuo>
+              <ExtraCheckBox onClick={() => setActiveDuo(!activeDuo)} />
+              <p className="ExtraDesc">Duo-Queue </p>
+              <p className="ExtraDesc"> +75%</p>
+            </IconDescWrapper>
+          </ExtraIconButtonWrap>
+          <ExtraIconButtonWrap>
+            <IconDescWrapper>
+              <IconStream />
+              <ExtraCheckBox onClick={() => setActiveStream(!activeStream)} />
+              <p className="ExtraDesc">On Stream</p>
+              <p className="ExtraDesc"> +15%</p>
+            </IconDescWrapper>
+          </ExtraIconButtonWrap>
+          <ExtraIconButtonWrap>
+            <IconDescWrapper>
+              <IconSpeed></IconSpeed>
+              <ExtraCheckBox onClick={() => setPriority(!activePriority)} />
+              <p className="ExtraDesc">Boost-Priority</p>
+              <p className="ExtraDesc"> +25%</p>
+            </IconDescWrapper>
+          </ExtraIconButtonWrap>
+        </ExtrasOptions>
+      </ExtrasContainer>
       <StepTwoWarningContainer style={{ display: valid }}>
         Please Select a legend
         <StepTwoWarning>
@@ -295,7 +412,15 @@ const AcheivementBoostProduct = () => {
             </button>
           </div>
           <DiscountContainer>Total</DiscountContainer>
-          <TotalMoney>{acheivementTotalMoney}$</TotalMoney>
+          <TotalMoney>
+            {(
+              acheivementTotalMoney +
+              moneyMultiplierDuo +
+              moneyMultiplierStream +
+              moneyMultiplierPriority
+            ).toFixed(2)}
+            {"$"}
+          </TotalMoney>
 
           <div class="button_cont" align="center">
             <Link to="./cart">
@@ -303,11 +428,17 @@ const AcheivementBoostProduct = () => {
                 onClick={() => {
                   addToCart({
                     title: "Acheivement Boost",
-                    price: acheivementTotalMoney,
+                    price: (
+                      acheivementTotalMoney +
+                      moneyMultiplierDuo +
+                      moneyMultiplierStream +
+                      moneyMultiplierPriority
+                    ).toFixed(2),
                     selectedPopBadges: filteredPopBadges,
                     selectedExtraBadges: filteredExtraBadges,
                     selectedLegend: Object.keys(checkedLegend),
                     icon: TwentyBomb,
+                    badgesExtras: Object.keys(filteredExtras),
                   });
                 }}
                 class="example_d"

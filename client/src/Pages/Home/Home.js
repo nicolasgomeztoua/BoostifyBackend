@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./Home.css";
@@ -34,7 +34,7 @@ const Home = () => {
 
   const [horizonImg, sethorizonImg] = useState(Horizon);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (windowInnerWidth >= 1279) {
       sethorizonImg(Horizon);
     } else {

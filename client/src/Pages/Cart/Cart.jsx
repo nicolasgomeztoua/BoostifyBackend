@@ -41,6 +41,7 @@ const Cart = () => {
   const [disabled, setDisabled] = useState(false);
   const [invalid, setInvalid] = useState("flex");
   const [extrasArr, setExtrasArr] = useState([]);
+  const [badgesExtras, setBadgesExtras] = useState([]);
   const items = useCart();
   const dispatch = useDispatchCart();
   const totalPrice = items.reduce(
@@ -90,6 +91,12 @@ const Cart = () => {
         return element.extrasArr;
       })
     );
+    setBadgesExtras(
+      items.flatMap((element) => {
+        console.log(element.badgesExtras);
+        return element.badgesExtras;
+      })
+    );
   }, [items]);
 
   const handleRemove = (index) => {
@@ -129,6 +136,7 @@ const Cart = () => {
           items,
           totalPrice,
           platform,
+          badgesExtras,
         },
         config
       );
@@ -276,7 +284,8 @@ const Cart = () => {
                             </span>
 
                             <span className="thin small">
-                              {`${element.filteredExtras}` || "no extras"}
+                              {element.filteredExtras ||
+                                `${element.badgesExtras}`}
                             </span>
                             <br />
                             <CircleWithCross

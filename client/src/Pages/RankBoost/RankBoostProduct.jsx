@@ -17,7 +17,6 @@ import {
   ExtrasContainer,
   ExtrasOptions,
   ExtraIconButtonWrap,
-  StepTwoWarningContainer,
   ExtraCheckBox,
   IconDuo,
   IconDescWrapper,
@@ -30,6 +29,7 @@ import {
   TotalMoneyHeader,
   DiscountContainer,
   TotalMoney,
+  StepTwoWarningContainer,
 } from "./RankedBoostProductElements";
 
 import { Link } from "react-router-dom";
@@ -111,7 +111,7 @@ const RankBoostProduct = () => {
     if (!activePriority) {
       setMoneyMultipliePriority(0);
     }
-  }, [activePriority]);
+  }, [activePriority, totalMoney]);
 
   useEffect(() => {
     if (activeStream) {
@@ -120,7 +120,7 @@ const RankBoostProduct = () => {
     if (!activeStream) {
       setMoneyMultiplierStream(0);
     }
-  }, [activeStream]);
+  }, [activeStream, totalMoney]);
 
   useEffect(() => {
     setTotalPoints(secondValue - firstValue);
@@ -272,7 +272,7 @@ const RankBoostProduct = () => {
     }
     if (secondValue > 5400) {
       setSecondTier("III");
-       setRankMultiplier(3.855932203);
+      setRankMultiplier(3.855932203);
     }
     if (secondValue > 5900) {
       setRankMultiplier(4.055384615);
