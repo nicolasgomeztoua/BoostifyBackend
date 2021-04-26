@@ -25,7 +25,11 @@ exports.protect = async (req, res, next) => {
     }
 
     req.user = user;
-
+    res.status(200).json({
+      sucess: true,
+      data: "You got acess to the private data in this route",
+      username: user.username,
+    });
     next();
   } catch (error) {
     return next(new ErrorResponse("Not authorized to acces this route", 401));
