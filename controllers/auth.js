@@ -988,7 +988,10 @@ exports.resetpassword = async (req, res, next) => {
     next(err);
   }
 };
-
+exports.profile = async (req, res, next) => {
+  try {
+  } catch (error) {}
+};
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   res.status(statusCode).json({ sucess: true, token });
