@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const { uuid } = require("uuidv4");
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -24,6 +25,7 @@ const UserSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
+  ID: uuid(),
 });
 
 UserSchema.pre("save", async function (next) {
