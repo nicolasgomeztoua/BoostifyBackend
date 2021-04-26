@@ -5,9 +5,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
 
-const stripe = require("stripe")(
-  "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"
-);
+const stripe = require("stripe")(process.env.SK);
 //Conect DB
 connectDB();
 const app = express();
