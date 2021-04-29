@@ -17,6 +17,7 @@ const OrderSchema = new mongoose.Schema({
   region: String,
   platform: String,
   badgesExtras: [String],
+  rankedImg: [String],
 });
 const Order = mongoose.model("Order", OrderSchema);
 
