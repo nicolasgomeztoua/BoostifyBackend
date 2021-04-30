@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { protect } = require("../middleware/auth");
 
-router.route("/").get(protect);
+router.route("/private").get(protect);
 
 module.exports = router;
