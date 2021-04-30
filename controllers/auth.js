@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Order = require("../models/User");
+const Order = require("../models/Order");
 const ErrorResponse = require("../utils/errorResponse");
 const sendEmailForgot = require("../utils/sendEmailForgot");
 const sendEmailRegister = require("../utils/sendEmailRegister");
