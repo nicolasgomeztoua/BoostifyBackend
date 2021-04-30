@@ -1003,7 +1003,7 @@ exports.profile = async (req, res, next) => {
     req.order = orders;
     res.status(200).json({
       sucess: true,
-      data: orders;
+      data: orders,
     });
     next();
   } catch (error) {
