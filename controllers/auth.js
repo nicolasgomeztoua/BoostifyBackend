@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Order = require("../models/User");
 const ErrorResponse = require("../utils/errorResponse");
 const sendEmailForgot = require("../utils/sendEmailForgot");
 const sendEmailRegister = require("../utils/sendEmailRegister");
@@ -993,10 +994,17 @@ exports.resetpassword = async (req, res, next) => {
   }
 };
 exports.profile = async (req, res, next) => {
+  const { userId } = req.body;
   try {
-    console.log("hello");
+    Order.find({ userId: userId }, (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        res.status(200).json({ orders: data });
+      }
+    });
   } catch (error) {
-    console.log(error);
+    res.status(400);
   }
 };
 const sendToken = (user, statusCode, res) => {
