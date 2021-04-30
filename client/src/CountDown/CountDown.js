@@ -9,7 +9,7 @@ const CountDown = () => {
   useEffect(() => {
     setInterval(() => {
       const now = new Date().getTime();
-      const countDate = new Date("Apr 14 2021 23:59:59");
+      const countDate = new Date("May 04 2021 18:00");
       let gap = countDate - now;
       let second = 1000;
       let minute = second * 60;
@@ -25,9 +25,9 @@ const CountDown = () => {
     <div className="countDown-container">
       <h2>
         Limited time discount!<br></br>
-        <br></br> For 40% off use code
+        <br></br> For 30% off use code
         <span>
-          <i>"BOOSTIFY40"</i>
+          <i>"ENDOFSPLIT30"</i>
         </span>
       </h2>
       <div className="countDown-wrapper">

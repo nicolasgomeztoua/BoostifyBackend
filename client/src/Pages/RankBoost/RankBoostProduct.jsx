@@ -67,10 +67,15 @@ const RankBoostProduct = () => {
   const [completionTime, setCompletionTime] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [opacity, setOpacity] = useState(1);
+  const [disabledDiscount, setDisabledDiscount] = useState("none");
 
   const handleDiscount = () => {
-    if (validPromo === "boostify40") {
-      setTotalMoney(totalMoney / 1.4);
+    if (
+      validPromo === "endofsplit30" &&
+      secondValue >= 10000 &&
+      secondValue <= 10138
+    ) {
+      setTotalMoney(totalMoney - totalMoney * 0.3);
       setDisabled(true);
       setOpacity(0.4);
     }
@@ -131,6 +136,13 @@ const RankBoostProduct = () => {
       setInvalid("flex");
     }
   }, [secondValue, firstValue]);
+  useEffect(() => {
+    if (secondValue > 10137 || secondValue < 10000) {
+      setDisabledDiscount("flex");
+    } else {
+      setDisabledDiscount("none");
+    }
+  }, [secondValue]);
   useEffect(() => {
     if (Number(secondValue) > Number(firstValue)) {
       setInvalid("none");
@@ -269,36 +281,63 @@ const RankBoostProduct = () => {
     }
     if (secondValue >= 4800) {
       setSecondTier("IV");
+      setRankMultiplier(3.855932203);
+    }
+    if (secondValue > 5000) {
+      setRankMultiplier(4.003828);
+    }
+    if (secondValue > 5200) {
+      setRankMultiplier(4.103828);
     }
     if (secondValue > 5400) {
       setSecondTier("III");
-      setRankMultiplier(3.855932203);
+      setRankMultiplier(4.155932203);
     }
     if (secondValue > 5900) {
-      setRankMultiplier(4.055384615);
+      setRankMultiplier(4.355384615);
     }
     if (secondValue > 6000) {
       setSecondTier("II");
+      setRankMultiplier(4.5);
+    }
+    if (secondValue > 6250) {
+      setRankMultiplier(4.6539294);
+    }
+    if (secondValue > 6350) {
+      setRankMultiplier(4.963828);
     }
     if (secondValue > 6500) {
-      setRankMultiplier(4.2);
+      setRankMultiplier(5.0);
     }
     if (secondValue > 6600) {
       setSecondTier("I");
+      setRankMultiplier(5.0);
+    }
+    if (secondValue > 6750) {
+      setRankMultiplier(5.503828);
+    }
+    if (secondValue > 6900) {
+      setRankMultiplier(5.513828);
+    }
+    if (secondValue > 7050) {
+      setRankMultiplier(5.523828);
+    }
+    if (secondValue > 7150) {
+      setRankMultiplier(5.533828);
     }
     if (secondValue >= 7200) {
       setSecondTier("IV");
-      setRankMultiplier(4.440506329);
+      setRankMultiplier(5.540506329);
     }
     if (secondValue > 7900) {
       setSecondTier("III");
-      setRankMultiplier(4.974117647);
+      setRankMultiplier(5.574117647);
     }
     if (secondValue > 8100) {
-      setRankMultiplier(5.3);
+      setRankMultiplier(5.6);
     }
     if (secondValue > 8300) {
-      setRankMultiplier(5.6);
+      setRankMultiplier(5.7);
     }
     if (secondValue > 8500) {
       setRankMultiplier(5.889130435);
@@ -513,6 +552,7 @@ const RankBoostProduct = () => {
 
   return (
     <>
+      <CountDown />
       <ProductContainer>
         <div></div>
         <ProductWrap>
@@ -553,7 +593,10 @@ const RankBoostProduct = () => {
                   height="100px"
                   width="300px"
                   value={secondValue}
-                  onChange={(e) => setSecondValue(e.target.value)}
+                  onChange={(e) => {
+                    setSecondValue(e.target.value);
+                    handleDiscount();
+                  }}
                 ></InputTyped>
                 <p style={{ textAlign: "center", fontSize: "45.23px" }}>RP</p>
               </DesiredRankBoost>
@@ -615,6 +658,26 @@ const RankBoostProduct = () => {
           </ExtrasContainer>
 
           <TotalContainer>
+            {" "}
+            <StepTwoWarningContainer
+              style={{
+                display: disabledDiscount,
+
+                height: "auto",
+                width: "80vw",
+                justifySelf: "center",
+                padding: "10px",
+              }}
+            >
+              If you want to use the discount code make sure to set your desired
+              RP to no more or less than 10000RP
+              <StepTwoWarning>
+                <i
+                  className="fa fa-times"
+                  onClick={() => setDisabledDiscount("none")}
+                ></i>
+              </StepTwoWarning>
+            </StepTwoWarningContainer>
             <TotalTitle>
               <F3></F3> Check your total
             </TotalTitle>
@@ -642,6 +705,7 @@ const RankBoostProduct = () => {
                   className="example_c"
                   disabled={disabled}
                   style={{ opacity: opacity }}
+                  onClick={handleDiscount}
                 >
                   {" "}
                   Apply

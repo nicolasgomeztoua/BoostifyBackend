@@ -18,6 +18,7 @@ import {
   StepTwoWarningContainer,
   StepTwoWarning,
 } from "../RankBoost/RankedBoostProductElements";
+import { Helmet } from "react-helmet";
 
 const stripePromise = loadStripe(
   "pk_live_51IXQz3BkRphF41hCtaUrdCUc0go2z7L5xnLyR8c0ygNfJtrZAODJ54e8MHGtBYmxU9PLo3b6cUmZnhIkTIggSek700L5X7dWou"
@@ -42,6 +43,7 @@ const Cart = () => {
   const [invalid, setInvalid] = useState("flex");
   const [extrasArr, setExtrasArr] = useState([]);
   const [badgesExtras, setBadgesExtras] = useState([]);
+  const [rankedImg, setRankedImg] = useState([]);
   const items = useCart();
   const dispatch = useDispatchCart();
   const totalPrice = items.reduce(
@@ -93,12 +95,16 @@ const Cart = () => {
     );
     setBadgesExtras(
       items.flatMap((element) => {
-        console.log(element.badgesExtras);
         return element.badgesExtras;
       })
     );
+    setRankedImg(
+      items.flatMap((element) => {
+        return element.icon;
+      })
+    );
   }, [items]);
-
+  console.log(rankedImg);
   const handleRemove = (index) => {
     dispatch({ type: "REMOVE", index });
   };
@@ -137,6 +143,7 @@ const Cart = () => {
           totalPrice,
           platform,
           badgesExtras,
+          rankedImg,
         },
         config
       );
@@ -235,6 +242,17 @@ const Cart = () => {
   if (totalPrice === 0) {
     return (
       <>
+        {" "}
+        <Helmet>
+          <title>
+            Boostify | Cheap Apex Legends Boosting Services Playstation
+          </title>
+          <meta
+            name="description"
+            content="Get boosted by our professionals for a cheap price and achieve higher Ranks in Apex Legends. Our professionals consist of only All-seasons Apex predators. Veterans. 24/7 Live Chat Support. Cheap. Get boosted by the best. Same Day Deliver Ranked boost and Badge boost."
+          />
+          <meta name="theme-color" content="#008f68" />
+        </Helmet>
         <Navbar></Navbar>
         <div className="failed-cart-contaier">
           <h1 id="empty">Your cart is empty </h1>
@@ -281,11 +299,13 @@ const Cart = () => {
                             <br />
                             <span className="thin small">
                               {element.selectedExtraBadges}
+                              <br />
                             </span>
 
                             <span className="thin small">
                               {element.filteredExtras ||
                                 `${element.badgesExtras}`}
+                              <br />
                             </span>
                             <br />
                             <CircleWithCross

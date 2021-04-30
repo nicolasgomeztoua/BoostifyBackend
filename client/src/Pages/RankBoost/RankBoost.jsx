@@ -7,6 +7,8 @@ import Footer from "../../Footer/Footer.jsx";
 import RankBoostProduct from "./RankBoostProduct";
 import ProdMenu from "../../ProdMenu/ProdMenu";
 import Navbar from "../../Navbar/Navbar";
+import { Helmet } from "react-helmet";
+
 const RankBoost = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
 
@@ -27,6 +29,17 @@ const RankBoost = () => {
 
   return (
     <>
+      {" "}
+      <Helmet>
+        <title>
+          Boostify | Apex Legends Rank Boosting
+        </title>
+        <meta
+          name="description"
+          content="Our top quality apex rank boost services will get you to any rank you desire in Apex Legends Ranked League including: Apex Predator, Apex Master and Apex Diamond. Break new grounds with our rank boost services"
+        />
+        <meta name="theme-color" content="#008f68" />
+      </Helmet>
       <Navbar></Navbar>
       <Parallax
         strength={-200}

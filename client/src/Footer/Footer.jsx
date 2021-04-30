@@ -6,7 +6,7 @@ import {
   FooterLinksContainer,
   FooterLinksWrapper,
   FooterLinkItems,
-  FooterLinkTitle,
+  FooterLinksTitles,
   FooterLink,
   FooterLinkSocial,
   SocialMedia,
@@ -25,7 +25,7 @@ const Footer = ({ footerColor }) => {
           <FooterLinksContainer>
             <FooterLinksWrapper>
               <FooterLinkItems>
-                <FooterLinkTitle>Services</FooterLinkTitle>
+                <FooterLinksTitles>Services</FooterLinksTitles>
                 <FooterLink to="/kills-boosting">Kills Boost</FooterLink>
                 <FooterLink to="/rank-boosting">Rank Boost</FooterLink>
                 <FooterLink to="/acheivement-badges">
@@ -35,7 +35,7 @@ const Footer = ({ footerColor }) => {
               </FooterLinkItems>
 
               <FooterLinkItems>
-                <FooterLinkTitle>Explore</FooterLinkTitle>
+                <FooterLinksTitles>Explore</FooterLinksTitles>
                 <FooterLink to="/">Home</FooterLink>
                 <FooterLink to="/register">Sign Up</FooterLink>
                 <FooterLink to="/login">Log-in</FooterLink>
@@ -44,7 +44,7 @@ const Footer = ({ footerColor }) => {
 
             <FooterLinksWrapper>
               <FooterLinkItems>
-                <FooterLinkTitle>Contact Us</FooterLinkTitle>
+                <FooterLinksTitles>Contact Us</FooterLinksTitles>
                 <FooterLink to="/contact-us">USA</FooterLink>
                 <FooterLink to="/contact-us">EU</FooterLink>
                 <FooterLink to="/contact-us">Asia</FooterLink>
@@ -52,7 +52,7 @@ const Footer = ({ footerColor }) => {
               </FooterLinkItems>
 
               <FooterLinkItems>
-                <FooterLinkTitle>Socials</FooterLinkTitle>
+                <FooterLinksTitles>Socials</FooterLinksTitles>
                 <a
                   href="https://www.instagram.com/boostifyofficial/"
                   target="_blank"

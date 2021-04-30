@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AuthComponents.css";
 import Navbar from "../../Navbar/Navbar";
+import { Helmet } from "react-helmet";
+
 const Register = ({ history }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -52,6 +54,16 @@ const Register = ({ history }) => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          Boostify | Cheap Apex Legends Boosting Services Playstation
+        </title>
+        <meta
+          name="description"
+          content="Get boosted by our professionals for a cheap price and achieve higher Ranks in Apex Legends. Our professionals consist of only All-seasons Apex predators. Veterans. 24/7 Live Chat Support. Cheap. Get boosted by the best. Same Day Deliver Ranked boost and Badge boost."
+        />
+        <meta name="theme-color" content="#008f68" />
+      </Helmet>
       <Navbar></Navbar>
       <div className="register-screen">
         <form onSubmit={registerHandler} className="register-screen__form">

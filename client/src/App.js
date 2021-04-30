@@ -58,7 +58,9 @@ function App() {
             ></Route>
             <Route path="/blog" exact component={Blog}></Route>
             <Route path="/success" exact component={Sucess}></Route>
-            <Route path="/profile" exact component={Profile}></Route>
+            <PrivateRoute>
+              <Route path="/profile" exact component={Profile}></Route>
+            </PrivateRoute>
           </Switch>
         </div>{" "}
       </Router>

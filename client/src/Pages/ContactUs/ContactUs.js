@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "../authComponents/AuthComponents.css";
 import Navbar from "../../Navbar/Navbar";
-
+import { Helmet } from "react-helmet";
 import {
   StepTwoWarningContainer,
   StepTwoWarning,
@@ -46,6 +46,17 @@ const Contact = ({ history }) => {
   console.log("hello".length);
   return (
     <>
+      {" "}
+      <Helmet>
+        <title>
+          Boostify | Contact us about any doubts you may have regarding our Apex Legends Boosting Services.
+        </title>
+        <meta
+          name="description"
+          content="Boostify has a dedicated team in place to reply to any of your concerns about our Apex Legends Boosting Services 24/7. We have over 1200 completed orders and a very high rating review score."
+        />
+        <meta name="theme-color" content="#008f68" />
+      </Helmet>
       <Navbar></Navbar>
       <StepTwoWarningContainer
         style={{ display: invalid, alignSelf: "flex-start" }}
@@ -59,7 +70,6 @@ const Contact = ({ history }) => {
           ></i>
         </StepTwoWarning>
       </StepTwoWarningContainer>
-
       <StepTwoWarningContainer
         style={{
           display: valid,

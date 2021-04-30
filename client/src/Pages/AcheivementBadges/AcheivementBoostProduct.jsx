@@ -329,7 +329,7 @@ const AcheivementBoostProduct = () => {
           </BadgesSelectionContainers>
         </BadgesWrap>
       </BadgesContainer>
-      <ExtrasContainer>
+      <ExtrasContainer style={{ gridTemplateRows: "1fr" }}>
         <ExtrasTitle>Choose additional services</ExtrasTitle>
         <ExtrasOptions>
           <ExtraIconButtonWrap>

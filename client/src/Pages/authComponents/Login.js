@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AuthComponents.css";
 import Navbar from "../../Navbar/Navbar";
+import { Helmet } from "react-helmet";
 
 import {
   StepTwoWarningContainer,
@@ -51,8 +52,18 @@ const Login = ({ history }) => {
 
   return (
     <>
+      {" "}
+      <Helmet>
+        <title>
+          Boostify | Cheap Apex Legends Boosting Services Playstation
+        </title>
+        <meta
+          name="description"
+          content="Get boosted by our professionals for a cheap price and achieve higher Ranks in Apex Legends. Our professionals consist of only All-seasons Apex predators. Veterans. 24/7 Live Chat Support. Cheap. Get boosted by the best. Same Day Deliver Ranked boost and Badge boost."
+        />
+        <meta name="theme-color" content="#008f68" />
+      </Helmet>
       <Navbar></Navbar>
-
       <div className="login-screen">
         <form onSubmit={loginHandler} className="login-screen__form">
           <h3 className="login-screen__title">Login</h3>

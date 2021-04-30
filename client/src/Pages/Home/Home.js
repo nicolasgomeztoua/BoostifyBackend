@@ -8,7 +8,7 @@ import { GameController } from "@styled-icons/entypo/GameController";
 import { Support } from "@styled-icons/boxicons-regular/Support";
 import { VerifiedUser } from "@styled-icons/material-twotone/VerifiedUser";
 import { QuestionAnswer } from "@styled-icons/material-twotone/QuestionAnswer";
-
+import OrdersCarousel from "./OrdersCarousel";
 import { Parallax } from "react-parallax";
 import Horizon from "../Images/Horizon.jpg";
 import HorizonMobile from "../Images/Horizon2.jpg";
@@ -221,6 +221,7 @@ const Home = () => {
       <WhoAreWe></WhoAreWe>
       <WhatIsBoosting></WhatIsBoosting>
       <WhyUs></WhyUs>
+      <OrdersCarousel></OrdersCarousel>
       <div>
         <h2 className="Testimonials-intro">
           {" "}
