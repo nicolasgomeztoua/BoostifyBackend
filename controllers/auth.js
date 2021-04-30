@@ -996,16 +996,14 @@ exports.resetpassword = async (req, res, next) => {
 exports.profile = async (req, res, next) => {
   const { userId } = req.body;
   try {
-    const order = await Order.find({ userId: userId });
-    if (!order) {
+    const orders = await Order.find({ userId: userId });
+    if (!orders) {
       return next(new ErrorResponse("No Orders found for this user", 404));
     }
-    req.order = order;
+    req.order = orders;
     res.status(200).json({
       sucess: true,
-      data: "You got acess to the private data in this route",
-      username: user.username,
-      user_id: user.user_id,
+      data: orders;
     });
     next();
   } catch (error) {
