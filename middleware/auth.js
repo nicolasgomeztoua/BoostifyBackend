@@ -29,6 +29,7 @@ exports.protect = async (req, res, next) => {
       sucess: true,
       data: "You got acess to the private data in this route",
       username: user.username,
+      user_id: user.user_id,
     });
     next();
   } catch (error) {

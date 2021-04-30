@@ -10,6 +10,7 @@ const {
   createorder,
   supportTickets,
   reviews,
+  profile,
 } = require("../controllers/auth");
 
 router.route("/register").post(register);
@@ -26,4 +27,5 @@ router.route("/supportTickets").post(supportTickets);
 
 router.route("/reviews").post(reviews);
 
+router.route("/profile").get(profile);
 module.exports = router;

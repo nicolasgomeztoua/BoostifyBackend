@@ -992,7 +992,10 @@ exports.resetpassword = async (req, res, next) => {
 };
 exports.profile = async (req, res, next) => {
   try {
-  } catch (error) {}
+    console.log("hello");
+  } catch (error) {
+    console.log(error);
+  }
 };
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
