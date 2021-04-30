@@ -1004,7 +1004,7 @@ exports.profile = async (req, res, next) => {
       }
     });
   } catch (error) {
-    res.status(400);
+    res.status(400).json((error: error));
   }
 };
 const sendToken = (user, statusCode, res) => {
