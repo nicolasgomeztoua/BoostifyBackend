@@ -18,7 +18,7 @@ const OrderSchema = new mongoose.Schema({
   platform: String,
   badgesExtras: [String],
   rankedImg: [String],
-  user_Id: { type: String, default: "no Id" },
+  userId: { type: String, default: "no Id" },
 });
 const Order = mongoose.model("Order", OrderSchema);
 
