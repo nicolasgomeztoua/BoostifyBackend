@@ -27,5 +27,4 @@ router.route("/supportTickets").post(supportTickets);
 
 router.route("/reviews").post(reviews);
 
-router.route("/profile").post(profile);
 module.exports = router;

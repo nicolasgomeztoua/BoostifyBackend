@@ -993,23 +993,7 @@ exports.resetpassword = async (req, res, next) => {
     next(err);
   }
 };
-exports.profile = async (req, res, next) => {
-  const { userId } = req.body;
-  try {
-    const orders = await Order.find({ userId: userId });
-    if (!orders) {
-      return next(new ErrorResponse("No Orders found for this user", 404));
-    }
-    req.order = orders;
-    res.status(200).json({
-      sucess: true,
-      data: orders,
-    });
-    next();
-  } catch (error) {
-    return next(new ErrorResponse("error", 401));
-  }
-};
+
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   res.status(statusCode).json({ sucess: true, token });
