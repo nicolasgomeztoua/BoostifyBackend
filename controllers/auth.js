@@ -234,7 +234,7 @@ a[x-apple-data-detectors] {
 };
 
 exports.createorder = async (req, res, next) => {
-  var orderId = crypto.randomBytes(4).toString("hex");
+  const orderId = crypto.randomBytes(4).toString("hex");
   const {
     titles,
     prices,
@@ -618,7 +618,7 @@ a[x-apple-data-detectors] {
       region,
       dateCreated,
       extrasArr,
-      id,
+      orderId,
       platform,
       badgesExtras,
       rankedImg,
