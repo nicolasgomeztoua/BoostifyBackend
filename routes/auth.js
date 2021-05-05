@@ -11,6 +11,7 @@ const {
   supportTickets,
   reviews,
   profile,
+  missingOrder,
 } = require("../controllers/auth");
 
 router.route("/register").post(register);
@@ -26,5 +27,7 @@ router.route("/createorder").post(createorder);
 router.route("/supportTickets").post(supportTickets);
 
 router.route("/reviews").post(reviews);
+
+router.route("/missing-order").post(missingOrder);
 
 module.exports = router;

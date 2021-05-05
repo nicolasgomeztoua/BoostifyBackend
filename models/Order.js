@@ -13,7 +13,7 @@ const OrderSchema = new mongoose.Schema({
   region: String,
   dateCreated: { type: Date },
   extrasArr: [[]],
-  id: String,
+  orderId: String,
   region: String,
   platform: String,
   badgesExtras: [String],

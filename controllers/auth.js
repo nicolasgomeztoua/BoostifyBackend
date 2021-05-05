@@ -994,6 +994,23 @@ exports.resetpassword = async (req, res, next) => {
   }
 };
 
+exports.missingOrder = async (req, res, next) => {
+  const { orderId, userId } = req.body;
+  try {
+    Order.findOneAndUpdate({ orderId }, { userId }, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      error,
+    });
+  }
+};
+
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   res.status(statusCode).json({ sucess: true, token });
