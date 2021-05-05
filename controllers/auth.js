@@ -1002,13 +1002,15 @@ exports.missingOrder = async (req, res, next) => {
       { userId: userId },
       (err, data) => {
         if (err) {
-          res.status(500).json({ order });
+          console.log(err);
         } else {
-          res.status(200);
+          console.log(data);
         }
       }
     );
+    res.status(200).json({ order });
   } catch (error) {
+    res.status(500).json({ order });
     next(error);
   }
 };
