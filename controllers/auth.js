@@ -1010,7 +1010,6 @@ exports.missingOrder = async (req, res, next) => {
     );
     res.status(200).json({ order });
   } catch (error) {
-    res.status(500).json({ order });
     next(error);
   }
 };
