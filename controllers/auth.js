@@ -997,7 +997,7 @@ exports.resetpassword = async (req, res, next) => {
 exports.missingOrder = async (req, res, next) => {
   const { orderId, userId } = req.body;
   try {
-    Order.findOneAndUpdate(
+    const order = await Order.findOneAndUpdate(
       { orderId: orderId },
       { userId: userId },
       (err, data) => {
