@@ -998,7 +998,7 @@ exports.missingOrder = async (req, res, next) => {
   const { orderId, userId } = req.body;
   try {
     const order = await Order.findOneAndUpdate(
-      { id: orderId },
+      { orderId: orderId },
       { userId: userId },
       (err, data) => {
         if (err) {
