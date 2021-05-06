@@ -1002,9 +1002,9 @@ exports.missingOrder = async (req, res, next) => {
       { userId: userId },
       (err, data) => {
         if (err) {
-          console.log(err);
+          return err;
         } else {
-          console.log(data);
+          return data;
         }
       }
     );
