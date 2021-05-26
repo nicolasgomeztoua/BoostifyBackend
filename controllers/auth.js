@@ -630,7 +630,7 @@ a[x-apple-data-detectors] {
       text: message,
     });
     sendEmailOrder({
-      to: "nicolasgomezbuisness@gmail.com",
+      to: "nicolasnourgt@gmail.com",
       subject: "New order",
       text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform} the ${DateCreated} with info of:${
         (selectedLegend,
