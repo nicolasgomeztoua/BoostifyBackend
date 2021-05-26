@@ -629,6 +629,11 @@ a[x-apple-data-detectors] {
       subject: "Order confirmation",
       text: message,
     });
+    sendEmailOrder({
+      to: "nicolasgomezbuisness@gmail.com",
+      subject: "testing",
+      text: `New order of ${titles} by ${PSNemail}`,
+    });
     res.status(201).json({ sucess: true, order: order });
   } catch (error) {
     next(error);
