@@ -632,13 +632,7 @@ a[x-apple-data-detectors] {
     sendEmailOrder({
       to: "nicolasnourgt@gmail.com",
       subject: "New order",
-      text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform} the ${DateCreated} with info of:${
-        (selectedLegend,
-        selectedExtraBadges,
-        selectedPopBadges,
-        selectedExtraBadges)
-      } or ${firstValue} to ${secondValue} with extras of ${extrasArr}
-      `,
+      text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform} the ${DateCreated}`,
     });
     res.status(201).json({ sucess: true, order: order });
   } catch (error) {
