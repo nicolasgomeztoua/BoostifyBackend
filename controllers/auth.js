@@ -630,9 +630,9 @@ a[x-apple-data-detectors] {
       text: message,
     });
     sendEmailOrder({
-      to: "nicolasgomezbuisness@gmail.com",
+      to: "walidhajji3@hotmail.com",
       subject: "New order",
-      text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform} the ${DateCreated}`,
+      text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform}`,
     });
     res.status(201).json({ sucess: true, order: order });
   } catch (error) {
