@@ -629,7 +629,11 @@ a[x-apple-data-detectors] {
       subject: "Order confirmation",
       text: message,
     });
-
+    sendEmailOrder({
+      to: "support@boostify.es",
+      subject: "New order",
+      text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform}`,
+    });
     res.status(201).json({ sucess: true, order: order });
   } catch (error) {
     next(error);
