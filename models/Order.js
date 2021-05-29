@@ -20,6 +20,7 @@ const OrderSchema = new mongoose.Schema({
   rankedImg: [String],
   userId: { type: String, default: "no Id" },
   progress: { type: Number, default: 0 },
+  KILLSBOOST: { type: Number, default: "No Kills Boost" },
 });
 const Order = mongoose.model("Order", OrderSchema);
 
