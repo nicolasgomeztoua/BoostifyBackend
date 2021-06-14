@@ -7,7 +7,9 @@ import Footer from "../../Footer/Footer.jsx";
 import Navbar from "../../Navbar/Navbar";
 import ProdMenu from "../../ProdMenu/ProdMenu";
 import AcheivementBoostProduct from "./AcheivementBoostProduct";
+import PostOrder from "../../PostOrder/PostOrder";
 import { Helmet } from "react-helmet";
+import Hero from "../../Hero.js/Hero";
 const AcheivementBadges = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
 
@@ -17,7 +19,9 @@ const AcheivementBadges = () => {
   window.addEventListener("resize", reportWindowSize);
 
   const [fuseyImg, setfuseyImg] = useState(Fusey);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     if (windowInnerWidth >= 1279) {
       setfuseyImg(Fusey);
@@ -39,24 +43,14 @@ const AcheivementBadges = () => {
         <meta name="theme-color" content="#008f68" />
       </Helmet>
       <Navbar></Navbar>
-      <Parallax
-        strength={-200}
-        bgImage={fuseyImg}
-        bgImageAlt=""
-        bgImageStyle={{
-          paddingTop: "100px",
-
-          backgroundAttachment: "none",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="Services-Header">
-          <h1 id="Rank-boost-title">Apex Legends Badges Boost</h1>
-          <h2 id="Rank-boost-subtitle"> Highlight your banner </h2>
-        </div>
-      </Parallax>
+      <Hero
+        img={fuseyImg}
+        title="Apex Legends Badges Boost"
+        subtitle="Highlight your banner"
+      ></Hero>
       <ProdMenu></ProdMenu>
       <AcheivementBoostProduct></AcheivementBoostProduct>
+      <PostOrder></PostOrder>
       <Footer footerColor="#e43403"></Footer>
     </>
   );

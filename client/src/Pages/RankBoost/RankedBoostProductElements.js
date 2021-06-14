@@ -44,6 +44,7 @@ export const ProductWrap = styled.div`
   }
   @media (max-width: 811px) {
     width: 92vw;
+    height: 3300px;
   }
   @media (max-width: 580px) {
     width: 92vw;
@@ -132,15 +133,15 @@ export const InitialRank = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-right: 10px;
-  height: 700px;
+
+  height: auto;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   @media (max-width: 810px) {
     width: 100%;
-
+    margin-bottom: 50px;
     max-width: 80vw;
     justify-self: center;
     margin-right: 0px;
-    height: 700px;
   }
 `;
 export const DesiredRankBoost = styled.div`
@@ -149,7 +150,7 @@ export const DesiredRankBoost = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-left: 10px;
-  height: 700px;
+  height: auto;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   @media (max-width: 810px) {
     width: 100%;
@@ -157,12 +158,12 @@ export const DesiredRankBoost = styled.div`
     max-width: 80vw;
     justify-self: center;
     margin-left: 0px;
-    height: 700px;
   }
 `;
 export const Slider = styled.input.attrs({
   type: "range",
   name: "points",
+  step: "25",
   min: "0",
   max: "20000",
 })`
@@ -331,7 +332,7 @@ export const ExtraCheckBox = styled.input.attrs({
   transition: 0.5s;
 
   &:checked {
-    background: #e43403;
+    background: ${(props) => (props.color ? props.color : "#e43403")};
   }
   &:before {
     content: "";

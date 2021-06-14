@@ -18,7 +18,7 @@ import Blog from "./Pages/Blog/Blog";
 import ComingSoon from "./Pages/ComingSoon/ComingSoon";
 import Sucess from "./Pages/Sucess/Sucess";
 import Profile from "./Pages/Profile/Profile";
-
+import KillBoost from "./Pages/KillsBoost/KillBoost";
 function App() {
   return (
     <>
@@ -37,7 +37,7 @@ function App() {
             <Route path="/" exact component={Home}></Route>
             <Route path="/rank-boosting" exact component={RankBoost}></Route>
             <Route path="/contact-us" exact component={ContactUs}></Route>
-            <Route path="/kills-boosting" exact component={ComingSoon}></Route>
+            <Route path="/kills-boosting" exact component={KillBoost}></Route>
             <Route
               path="/acheivement-badges"
               exact

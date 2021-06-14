@@ -1,0 +1,129 @@
+.post-order-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-order-card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 1fr 1fr 0.31fr;
+  grid-template-areas: "image" "text" "stats";
+  width: 400px;
+  height: 700px;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  font-family: roboto;
+  text-align: center;
+}
+.post-order-card-image {
+  grid-area: image;
+}
+.post-order-card-text {
+  grid-area: text;
+}
+.post-order-card-stats {
+  grid-area: stats;
+}
+.post-order-card-image {
+  grid-area: image;
+  background: url("../Pages/Images/orderconfirmation.png");
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+  background-position: center center;
+  width: 400px;
+}
+.post-order-card-text {
+  grid-area: text;
+  margin: 25px;
+  width: 370px;
+}
+.post-order-card-text .date {
+  color: rgb(255, 7, 110);
+  font-size: 13px;
+}
+.post-order-card-text p {
+  color: grey;
+  font-size: 15px;
+  font-weight: 300;
+}
+.post-order-card-text h2 {
+  margin-top: 0px;
+  font-size: 28px;
+}
+.post-order-card-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  width: 400px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #40e0d0;
+}
+
+.post-order-card-stats .stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  color: white;
+  padding: 10px;
+}
+.post-order-card:hover {
+  transform: scale(1.15);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+.post-order-card {
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin: 30px;
+}
+.post-order-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+#step3 {
+  background: url("../Pages/Images/orderTrack.png");
+  background-size: cover;
+  background-position: center center;
+}
+#step2 {
+  background: url("../Pages/Images/emailBoostify.jpeg");
+  background-size: cover;
+  background-position: center center;
+}
+#step4 {
+  background: url("../Pages/Images/boosterLobby.jpeg");
+  background-size: cover;
+  background-position: center center;
+}
+@media screen and (max-width: 460px) {
+  .post-order-card,
+  .post-order-card-stats,
+  .post-order-card-image,
+  .post-order-card-text {
+    width: 300px;
+    margin: 1px;
+    margin-top: 20px;
+  }
+  .post-order-card {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (min-width: 915px) {
+  .post-order-wrap {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .post-order-wrap {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+.strong-desc {
+  color: black;
+}

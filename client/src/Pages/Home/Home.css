@@ -877,4 +877,7 @@
   height: 100%;
   width: 100%;
   min-width: 300px;
+  display: flex;
+  justify-self: center;
+  align-self: center;
 }

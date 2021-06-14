@@ -57,6 +57,9 @@ const AcheivementBoostProduct = () => {
   const [activePriority, setPriority] = useState(false);
   const [activeOffline, setActiveOffline] = useState(false);
   const [filteredExtras, setFilteredExtras] = useState("");
+  const [disabledButtonText, setDisabledButton] = useState("");
+  const [disabledState, setDisabledState] = useState("");
+
   const dispatch = useDispatchCart();
   const addToCart = (item) => {
     dispatch({ type: "ADD", item });
@@ -199,6 +202,15 @@ const AcheivementBoostProduct = () => {
     );
   }, [activeDuo, activeOffline, activePriority, activeStream]);
 
+  useEffect(() => {
+    if (!Object.values(checkedLegend)[0] || checkedLegend.length < 1) {
+      setDisabledButton("select a legend");
+      setDisabledState(true);
+    } else {
+      setDisabledButton("Add to cart");
+      setDisabledState(false);
+    }
+  }, [checkedLegend]);
   return (
     <>
       <BadgesTitle>Select Your Badges</BadgesTitle>
@@ -445,8 +457,9 @@ const AcheivementBoostProduct = () => {
                 href="add-website-here"
                 target="_blank"
                 rel="nofollow noopener"
+                disabled={disabledState}
               >
-                Add to cart
+                {disabledButtonText}
               </button>
             </Link>
           </div>

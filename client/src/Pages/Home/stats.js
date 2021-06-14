@@ -4,13 +4,19 @@ import { BagCheckFill } from "@styled-icons/bootstrap/BagCheckFill";
 import { UserClock } from "@styled-icons/fa-solid/UserClock";
 import { CalendarExclamation } from "@styled-icons/boxicons-regular/CalendarExclamation";
 import styled from "styled-components";
+
+export const walzyEditThis = {
+  ordersCompleted: 1205,
+  ordersQueued: 8,
+};
+
 const Stats = () => {
   const [d, sd] = useState(0);
 
   useEffect(() => {
     setInterval(() => {
       const now = new Date().getTime();
-      const countDate = new Date("May 04 2021 18:00");
+      const countDate = new Date("Jun 15 2021 18:00");
       let gap = countDate - now;
       let second = 1000;
       let minute = second * 60;
@@ -37,13 +43,14 @@ const Stats = () => {
     margin-top: 50px;
     margin-bottom: 50px;
   `;
+
   return (
     <div className="home-banner">
       <div>
         <h4>
           {" "}
           <AnimatedNumber
-            value={1182}
+            value={walzyEditThis.ordersCompleted}
             style={{
               fontSize: 43.96,
             }}
@@ -59,7 +66,7 @@ const Stats = () => {
       <div>
         <h4>
           <AnimatedNumber
-            value={12}
+            value={walzyEditThis.ordersQueued}
             style={{
               fontSize: 43.96,
             }}

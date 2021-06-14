@@ -9,9 +9,15 @@ import OrderTracker from "./OrderTracker";
 import Footer from "../../Footer/Footer";
 import { Helmet } from "react-helmet";
 
+import "./Input.css";
+import MissedOrder from "./MissedOrder";
 const Profile = ({ history }) => {
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
+  const [orderId, setOrderId] = useState();
+  const [orderError, setOrderError] = useState("");
+  const [orders, setOrders] = useState([]);
+  const [userId, setUserId] = useState([]);
 
   useEffect(() => {
     const fetchPrivateDate = async () => {
@@ -28,6 +34,8 @@ const Profile = ({ history }) => {
           config
         );
         setUsername(data.username);
+        setUserId(data.user_id);
+        setOrders(data.orders);
       } catch (error) {
         localStorage.removeItem("authToken");
         setError("You are not authorized please login");
@@ -36,7 +44,8 @@ const Profile = ({ history }) => {
     };
 
     fetchPrivateDate();
-  }, [history]);
+  }, []);
+  console.log(userId);
   return (
     <div>
       {" "}
@@ -56,10 +65,12 @@ const Profile = ({ history }) => {
           <div
             className="profile-bloodhound"
             style={{ backgroundImage: `url(${backgroundImage})` }}
-          >
-            a
-          </div>
-          <ProfileCard userImg={userImg} username={username}></ProfileCard>
+          ></div>
+          <ProfileCard
+            userImg={userImg}
+            username={username}
+            orderObj={orders}
+          ></ProfileCard>
           <div
             className="profile-bloodhound"
             style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -69,8 +80,10 @@ const Profile = ({ history }) => {
             style={{ backgroundImage: `url(${backgroundImage})` }}
           ></div>
         </div>
-        <OrderTracker orderImg={userImg}></OrderTracker>
+        <OrderTracker orderImg={userImg} orderObj={orders}></OrderTracker>
+        <MissedOrder userId={userId}></MissedOrder>
       </div>
+      {/*          */}
       <Footer footerColor="turquoise"></Footer>
     </div>
   );

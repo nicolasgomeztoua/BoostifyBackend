@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./Home.css";
@@ -10,7 +10,7 @@ import { VerifiedUser } from "@styled-icons/material-twotone/VerifiedUser";
 import { QuestionAnswer } from "@styled-icons/material-twotone/QuestionAnswer";
 import OrdersCarousel from "./OrdersCarousel";
 import { Parallax } from "react-parallax";
-import Horizon from "../Images/Horizon.jpg";
+import Horizon from "../Images/Horizon.webp";
 import HorizonMobile from "../Images/Horizon2.jpg";
 import Bloodhound from "../Images/FAQ.png";
 import Testimonials from "../../Testimonials/Testimonials";
@@ -34,7 +34,7 @@ const Home = () => {
 
   const [horizonImg, sethorizonImg] = useState(Horizon);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (windowInnerWidth >= 1279) {
       sethorizonImg(Horizon);
     } else {
@@ -63,12 +63,15 @@ const Home = () => {
     height: 100px;
     color: turquoise;
   `;
-
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+  };
+  clearCart();
   return (
     <div>
       <Helmet>
         <title>
-          Boostify | Cheap Apex Legends Boosting Services Playstation
+          Boostify | Season 9 Apex Legends Boosting Services PS4/PS5/XBox
         </title>
         <meta
           name="description"
@@ -78,7 +81,7 @@ const Home = () => {
       </Helmet>
       <Navbar />
       <Parallax
-        strength={-300}
+        strength={-200}
         bgImage={horizonImg}
         bgImageAlt="Horizon Header"
         bgImageStyle={{

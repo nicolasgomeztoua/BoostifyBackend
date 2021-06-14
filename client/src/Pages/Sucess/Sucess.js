@@ -1,9 +1,10 @@
 import React from "react";
 import "./Sucess.css";
-import { Link } from "react-router-dom";
+
 import { Helmet } from "react-helmet";
 import { useCart } from "../Cart/CartHandler";
-const Sucess = () => {
+
+const Sucess = ({ history }) => {
   const items = useCart();
   const totalPrice = items.reduce(
     (total, b) => Number(total) + Number(b.price),
@@ -42,10 +43,12 @@ const Sucess = () => {
             We received your purchase request;
             <br /> we'll be in touch shortly!
             <br />{" "}
-            <Link to="/" onClick={clearCart}>
-              {" "}
-              <button className="example_d"> Clear cart and go home</button>
-            </Link>
+            <a href="https://www.boostify.es/">
+              <button className="example_d" onClick={clearCart}>
+                {" "}
+                Clear cart and go home
+              </button>
+            </a>
           </p>
         </div>
       </div>

@@ -221,6 +221,7 @@
   border-bottom: solid 4px #e43403;
   border-radius: 8px;
   margin-bottom: 1rem;
+  padding: 1rem;
 }
 #tier {
   color: white;
@@ -284,6 +285,10 @@
   background: #e43403;
   border-color: #e43403 !important;
   transition: all 0.4s ease 0s;
+}
+.k:hover {
+  background: #6d00ae;
+  border-color: #6d00ae !important;
 }
 
 .totalMoney {

@@ -58,8 +58,7 @@ const RankBoostProduct = () => {
   const [activePriority, setPriority] = useState(false);
   const [activeOffline, setActiveOffline] = useState(false);
   const [filteredExtras, setFilteredExtras] = useState("");
-  const [rankmultiplier, setRankMultiplier] = useState(0);
-  const [totalpoints, setTotalPoints] = useState(0);
+
   const [totalMoney, setTotalMoney] = useState(0);
   const [moneyMultiplierDuo, setMoneyMultiplierDuo] = useState(0);
   const [moneyMultiplierStream, setMoneyMultiplierStream] = useState(0);
@@ -96,9 +95,6 @@ const RankBoostProduct = () => {
       setSecondValue(10000);
     }
   }, [secondValue]);
-  useEffect(() => {
-    setTotalMoney((totalpoints * rankmultiplier * 0.42) / 100);
-  }, [totalpoints, rankmultiplier, firstValue]);
 
   useEffect(() => {
     if (activeDuo) {
@@ -128,14 +124,11 @@ const RankBoostProduct = () => {
   }, [activeStream, totalMoney]);
 
   useEffect(() => {
-    setTotalPoints(secondValue - firstValue);
-  }, [firstValue, secondValue]);
-
-  useEffect(() => {
     if (Number(secondValue) < Number(firstValue)) {
       setInvalid("flex");
     }
   }, [secondValue, firstValue]);
+
   useEffect(() => {
     if (secondValue > 10137 || secondValue < 10000) {
       setDisabledDiscount("flex");
@@ -164,73 +157,79 @@ const RankBoostProduct = () => {
   useEffect(() => {
     if (firstValue >= 0) {
       setFirstTier("IV");
+      setFirstRankImg(bronze);
     }
-    if (firstValue > 300) {
+    if (firstValue >= 300) {
       setFirstTier("III");
     }
-    if (firstValue > 600) {
+    if (firstValue >= 600) {
       setFirstTier("II");
     }
-    if (firstValue > 900) {
+    if (firstValue >= 900) {
       setFirstTier("I");
     }
     if (firstValue >= 1200) {
       setFirstTier("IV");
+      setFirstRankImg(silver);
     }
-    if (firstValue > 1600) {
+    if (firstValue >= 1600) {
       setFirstTier("III");
     }
-    if (firstValue > 2000) {
+    if (firstValue >= 2000) {
       setFirstTier("II");
     }
-    if (firstValue > 2400) {
+    if (firstValue >= 2400) {
       setFirstTier("I");
     }
     if (firstValue >= 2800) {
       setFirstTier("IV");
+      setFirstRankImg(gold);
     }
-    if (firstValue > 3300) {
+    if (firstValue >= 3300) {
       setFirstTier("III");
     }
-    if (firstValue > 3800) {
+    if (firstValue >= 3800) {
       setFirstTier("II");
     }
-    if (firstValue > 4300) {
+    if (firstValue >= 4300) {
       setFirstTier("I");
     }
     if (firstValue >= 4800) {
       setFirstTier("IV");
+      setFirstRankImg(plat);
     }
-    if (firstValue > 5400) {
+    if (firstValue >= 5400) {
       setFirstTier("III");
     }
-    if (firstValue > 6000) {
+    if (firstValue >= 6000) {
       setFirstTier("II");
     }
-    if (firstValue > 6600) {
+    if (firstValue >= 6600) {
       setFirstTier("I");
     }
     if (firstValue >= 7200) {
       setFirstTier("IV");
+      setFirstRankImg(diamond);
     }
-    if (firstValue > 7900) {
+    if (firstValue >= 7900) {
       setFirstTier("III");
     }
-    if (firstValue > 8600) {
+    if (firstValue >= 8600) {
       setFirstTier("II");
     }
-    if (firstValue > 9300) {
+    if (firstValue >= 9300) {
       setFirstTier("I");
     }
     if (firstValue >= 10000) {
       setFirstTier("GOAT");
+      setFirstRankImg(masters);
     }
   }, [firstValue]);
 
   useEffect(() => {
     if (secondValue >= 0) {
       setSecondTier("IV");
-      setRankMultiplier(2.1);
+      setSecondRankImg(bronze);
     }
     if (secondValue > 300) {
       setSecondTier("III");
@@ -240,14 +239,12 @@ const RankBoostProduct = () => {
     }
     if (secondValue > 900) {
       setSecondTier("I");
-      setRankMultiplier(2.325);
     }
     if (secondValue >= 1200) {
       setSecondTier("IV");
-      setRankMultiplier(2.3625);
+      setSecondRankImg(silver);
     }
-    if (secondValue >= 1500) {
-    }
+
     if (secondValue > 1600) {
       setSecondTier("III");
     }
@@ -256,13 +253,11 @@ const RankBoostProduct = () => {
     }
     if (secondValue > 2400) {
       setSecondTier("I");
-      setRankMultiplier(2.533333333);
     }
-    if (secondValue > 2700) {
-      setRankMultiplier(2.735714286);
-    }
+
     if (secondValue >= 2800) {
       setSecondTier("IV");
+      setSecondRankImg(gold);
     }
     if (secondValue > 3300) {
       setSecondTier("III");
@@ -270,251 +265,50 @@ const RankBoostProduct = () => {
     if (secondValue > 3800) {
       setSecondTier("II");
     }
-    if (secondValue > 4200) {
-      setRankMultiplier(3.187234043);
-    }
+
     if (secondValue > 4300) {
       setSecondTier("I");
     }
-    if (secondValue > 4700) {
-      setRankMultiplier(3.655932203);
-    }
+
     if (secondValue >= 4800) {
       setSecondTier("IV");
-      setRankMultiplier(3.855932203);
+      setSecondRankImg(plat);
     }
-    if (secondValue > 5000) {
-      setRankMultiplier(4.003828);
-    }
-    if (secondValue > 5200) {
-      setRankMultiplier(4.103828);
-    }
+
     if (secondValue > 5400) {
       setSecondTier("III");
-      setRankMultiplier(4.155932203);
     }
     if (secondValue > 5900) {
-      setRankMultiplier(4.355384615);
     }
     if (secondValue > 6000) {
       setSecondTier("II");
-      setRankMultiplier(4.5);
     }
-    if (secondValue > 6250) {
-      setRankMultiplier(4.6539294);
-    }
-    if (secondValue > 6350) {
-      setRankMultiplier(4.963828);
-    }
-    if (secondValue > 6500) {
-      setRankMultiplier(5.0);
-    }
+
     if (secondValue > 6600) {
       setSecondTier("I");
-      setRankMultiplier(5.0);
     }
-    if (secondValue > 6750) {
-      setRankMultiplier(5.503828);
-    }
-    if (secondValue > 6900) {
-      setRankMultiplier(5.513828);
-    }
-    if (secondValue > 7050) {
-      setRankMultiplier(5.523828);
-    }
-    if (secondValue > 7150) {
-      setRankMultiplier(5.533828);
-    }
+
     if (secondValue >= 7200) {
       setSecondTier("IV");
-      setRankMultiplier(5.540506329);
+      setSecondRankImg(diamond);
     }
     if (secondValue > 7900) {
       setSecondTier("III");
-      setRankMultiplier(5.574117647);
     }
-    if (secondValue > 8100) {
-      setRankMultiplier(5.6);
-    }
-    if (secondValue > 8300) {
-      setRankMultiplier(5.7);
-    }
-    if (secondValue > 8500) {
-      setRankMultiplier(5.889130435);
-    }
+
     if (secondValue > 8600) {
       setSecondTier("II");
-      setRankMultiplier(6.0);
     }
-    if (secondValue > 8700) {
-      setRankMultiplier(6.4);
-    }
-    if (secondValue > 8800) {
-      setRankMultiplier(6.8);
-    }
-    if (secondValue > 8900) {
-      setRankMultiplier(7.2);
-    }
-    if (secondValue > 9100) {
-      setRankMultiplier(7.3);
-    }
-    if (secondValue > 9200) {
-      setRankMultiplier(7.8);
-    }
+
     if (secondValue > 9300) {
-      setRankMultiplier(8.0);
       setSecondTier("I");
     }
-    if (secondValue > 9400) {
-      setRankMultiplier(8.5);
-    }
-    if (secondValue > 9500) {
-      setRankMultiplier(9.0);
-    }
-    if (secondValue > 9600) {
-      setRankMultiplier(9.5);
-    }
-    if (secondValue > 9700) {
-      setRankMultiplier(9.7);
-    }
 
-    if (secondValue > 9800) {
-      setRankMultiplier(10);
-    }
-    if (secondValue > 9850) {
-      setRankMultiplier(10.3);
-    }
-    if (secondValue > 9900) {
-      setRankMultiplier(10.6);
-    }
-    if (secondValue > 9930) {
-      setRankMultiplier(10.8);
-    }
-    if (secondValue > 9960) {
-      setRankMultiplier(11.1);
-    }
-    if (secondValue > 9980) {
-      setRankMultiplier(11.3);
-    }
     if (secondValue >= 10000) {
       setSecondTier("GOAT");
-      setRankMultiplier(11.53908046);
-    }
-    if (secondValue >= 10500) {
-      setRankMultiplier(11.93908046);
-    }
-    if (secondValue >= 11000) {
-      setRankMultiplier(12.43908046);
-    }
-    if (secondValue > 11500) {
-      setRankMultiplier(12.9);
-    }
-    if (secondValue > 12000) {
-      setRankMultiplier(13.4);
-    }
-    if (secondValue > 12500) {
-      setRankMultiplier(13.7);
-    }
-    if (secondValue > 13000) {
-      setRankMultiplier(14);
-    }
-    if (secondValue > 13500) {
-      setRankMultiplier(14.5);
-    }
-    if (secondValue > 14000) {
-      setRankMultiplier(15);
-    }
-    if (secondValue > 14300) {
-      setRankMultiplier(15.345839748);
-    }
-    if (secondValue > 14600) {
-      setRankMultiplier(15.721039485);
-    }
-    if (secondValue > 15000) {
-      setRankMultiplier(16.0927747);
-    }
-    if (secondValue > 15500) {
-      setRankMultiplier(16.472974);
-    }
-    if (secondValue > 16000) {
-      setRankMultiplier(16.8374957);
-    }
-    if (secondValue > 16500) {
-      setRankMultiplier(17.2038745);
-    }
-    if (secondValue > 17000) {
-      setRankMultiplier(17.59388494);
-    }
-    if (secondValue > 17500) {
-      setRankMultiplier(17.9304085);
-    }
-    if (secondValue > 17800) {
-      setRankMultiplier(18.29374893);
-    }
-    if (secondValue > 18000) {
-      setRankMultiplier(18.68938859);
-    }
-    if (secondValue > 18250) {
-      setRankMultiplier(18.9982384);
-    }
-    if (secondValue > 18500) {
-      setRankMultiplier(19.38478);
-    }
-    if (secondValue > 18700) {
-      setRankMultiplier(19.7439342);
-    }
-    if (secondValue > 19000) {
-      setRankMultiplier(20.38984);
-    }
-    if (secondValue > 19300) {
-      setRankMultiplier(20.69039);
-    }
-    if (secondValue > 19600) {
-      setRankMultiplier(21.00092748);
-    }
-  }, [secondValue, firstValue]);
-
-  useEffect(() => {
-    if (firstValue >= 0) {
-      setFirstRankImg(bronze);
-    }
-    if (firstValue >= 1200) {
-      setFirstRankImg(silver);
-    }
-    if (firstValue >= 2800) {
-      setFirstRankImg(gold);
-    }
-    if (firstValue >= 4800) {
-      setFirstRankImg(plat);
-    }
-    if (firstValue >= 7200) {
-      setFirstRankImg(diamond);
-    }
-    if (firstValue >= 10000) {
-      setFirstRankImg(masters);
-    }
-  }, [firstValue]);
-
-  useEffect(() => {
-    if (secondValue >= 0) {
-      setSecondRankImg(bronze);
-    }
-    if (secondValue >= 1200) {
-      setSecondRankImg(silver);
-    }
-    if (secondValue >= 2800) {
-      setSecondRankImg(gold);
-    }
-    if (secondValue >= 4800) {
-      setSecondRankImg(plat);
-    }
-    if (secondValue >= 7200) {
-      setSecondRankImg(diamond);
-    }
-    if (secondValue >= 10000) {
       setSecondRankImg(masters);
     }
-  }, [secondValue]);
+  }, [secondValue, firstValue]);
 
   useEffect(() => {
     if (firstValue) {
@@ -549,10 +343,219 @@ const RankBoostProduct = () => {
       )
     );
   }, [activeDuo, activeOffline, activePriority, activeStream]);
-
+  useEffect(() => {
+    const prices = [
+      0.1,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.25,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      1.875,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      2.5,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      3.125,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      4.64285714286,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+      10.5,
+    ];
+    const rankMultiplierArray = prices.splice(
+      firstValue / 100,
+      (secondValue - firstValue) / 100
+    );
+    const summedMultiplier = rankMultiplierArray.reduce((a, b) => a + b, 0);
+    console.log(rankMultiplierArray);
+    setTotalMoney(summedMultiplier);
+  }, [firstValue, secondValue]);
   return (
     <>
-      <CountDown />
       <ProductContainer>
         <div></div>
         <ProductWrap>
@@ -659,25 +662,6 @@ const RankBoostProduct = () => {
 
           <TotalContainer>
             {" "}
-            <StepTwoWarningContainer
-              style={{
-                display: disabledDiscount,
-
-                height: "auto",
-                width: "80vw",
-                justifySelf: "center",
-                padding: "10px",
-              }}
-            >
-              If you want to use the discount code make sure to set your desired
-              RP to no more or less than 10000RP
-              <StepTwoWarning>
-                <i
-                  className="fa fa-times"
-                  onClick={() => setDisabledDiscount("none")}
-                ></i>
-              </StepTwoWarning>
-            </StepTwoWarningContainer>
             <TotalTitle>
               <F3></F3> Check your total
             </TotalTitle>
@@ -705,7 +689,6 @@ const RankBoostProduct = () => {
                   className="example_c"
                   disabled={disabled}
                   style={{ opacity: opacity }}
-                  onClick={handleDiscount}
                 >
                   {" "}
                   Apply

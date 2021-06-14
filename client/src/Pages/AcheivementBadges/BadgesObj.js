@@ -41,6 +41,7 @@ import Pathfinder from "../Images/Pathfinder.jpg";
 import Bangalore from "../Images/Bangalore.jpg";
 import Caustic from "../Images/Caustic.jpg";
 import Fuse from "../Images/Fuse.jpg";
+import Valk from "../Images/valk.png";
 export const PopularBadgesObj = [
   {
     name: "20 Bomb",
@@ -273,5 +274,9 @@ export const LegendsObj = [
   {
     name: "Fuse",
     icon: Fuse,
+  },
+  {
+    name: "Valk",
+    icon: Valk,
   },
 ];

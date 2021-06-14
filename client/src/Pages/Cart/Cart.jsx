@@ -14,16 +14,18 @@ import { GooglePay } from "@styled-icons/fa-brands/GooglePay";
 import { CreditCardAlt } from "@styled-icons/boxicons-solid/CreditCardAlt";
 import { Playstation } from "@styled-icons/fa-brands/Playstation";
 import { Xbox } from "@styled-icons/fa-brands/Xbox";
+import PostOrder from "../../PostOrder/PostOrder";
 import {
   StepTwoWarningContainer,
   StepTwoWarning,
 } from "../RankBoost/RankedBoostProductElements";
 import { Helmet } from "react-helmet";
-
+import PaypalCheckout from "./PaypalCheckout";
 const stripePromise = loadStripe(
   "pk_live_51IXQz3BkRphF41hCtaUrdCUc0go2z7L5xnLyR8c0ygNfJtrZAODJ54e8MHGtBYmxU9PLo3b6cUmZnhIkTIggSek700L5X7dWou"
 );
-const Cart = () => {
+
+const Cart = ({ history }) => {
   const [message, setMessage] = useState("");
   const [titles, setTitles] = useState([""]);
   const [prices, setPrices] = useState([0]);
@@ -44,6 +46,9 @@ const Cart = () => {
   const [extrasArr, setExtrasArr] = useState([]);
   const [badgesExtras, setBadgesExtras] = useState([]);
   const [rankedImg, setRankedImg] = useState([]);
+  const [userId, setUserId] = useState(null);
+  const [checkout, setCheckout] = useState(false);
+  const [kills, setKills] = useState([]);
   const items = useCart();
   const dispatch = useDispatchCart();
   const totalPrice = items.reduce(
@@ -51,6 +56,9 @@ const Cart = () => {
     0
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     setTitles(
       items.map((element) => {
@@ -87,7 +95,7 @@ const Cart = () => {
         return element.selectedLegend;
       })
     );
-    setDatecreated(new Date());
+    setDatecreated(new Date().toDateString());
     setExtrasArr(
       items.flatMap((element) => {
         return element.extrasArr;
@@ -103,8 +111,13 @@ const Cart = () => {
         return element.icon;
       })
     );
+    setKills(
+      items.flatMap((element) => {
+        return element.kills;
+      })
+    );
   }, [items]);
-  console.log(rankedImg);
+  console.log(prices);
   const handleRemove = (index) => {
     dispatch({ type: "REMOVE", index });
   };
@@ -114,7 +127,30 @@ const Cart = () => {
     }
   });
 
-  const potentialOrder = (e) => {
+  useEffect(() => {
+    const fetchPrivateDate = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      };
+
+      try {
+        const { data } = await axios.get(
+          "https://secret-cove-64633.herokuapp.com/api/private",
+          config
+        );
+        setUserId(data.user_id);
+      } catch (error) {
+        setUserId(undefined);
+      }
+    };
+
+    fetchPrivateDate();
+  }, [history]);
+
+  const potentialOrder = async (e) => {
     const config = {
       headers: {
         "Access-Control-Allow-Origin":
@@ -124,7 +160,7 @@ const Cart = () => {
     };
 
     try {
-      const { data } = axios.post(
+      const { data } = await axios.post(
         "https://secret-cove-64633.herokuapp.com/api/auth/createorder",
         {
           titles,
@@ -144,6 +180,8 @@ const Cart = () => {
           platform,
           badgesExtras,
           rankedImg,
+          userId,
+          kills,
         },
         config
       );
@@ -244,9 +282,7 @@ const Cart = () => {
       <>
         {" "}
         <Helmet>
-          <title>
-            Boostify | Cheap Apex Legends Boosting Services Playstation
-          </title>
+          <title>Boostify | My Apex Legends Boosting Cart</title>
           <meta
             name="description"
             content="Get boosted by our professionals for a cheap price and achieve higher Ranks in Apex Legends. Our professionals consist of only All-seasons Apex predators. Veterans. 24/7 Live Chat Support. Cheap. Get boosted by the best. Same Day Deliver Ranked boost and Badge boost."
@@ -267,7 +303,7 @@ const Cart = () => {
   }
 
   return (
-    <>
+    <div>
       <Navbar></Navbar>
       <div className="container-cart">
         <div className="window">
@@ -276,6 +312,49 @@ const Cart = () => {
               <h2 id="order-summary">Order Summary</h2>
               <div className="line"></div>{" "}
               {items.map((element, index) => {
+                if (element.kills) {
+                  return (
+                    <table className="order-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img
+                              src={element.icon}
+                              className="full-width"
+                              alt="product"
+                            ></img>
+                          </td>
+                          <td>
+                            <br /> <span className="thin">{element.title}</span>
+                            <br />
+                            <span className="thin small">
+                              Kills: {element.kills}
+                              <br />
+                              <span className="thin small">
+                                {element.filteredExtras}
+                                <br />
+                              </span>
+                              <br />
+                              <CircleWithCross
+                                style={{
+                                  height: "20px",
+                                  color: "#e43043",
+                                  zIndex: "10",
+                                }}
+                                onClick={() => handleRemove(index)}
+                              ></CircleWithCross>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div className="price">${element.price}</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  );
+                }
                 return (
                   <table className="order-table">
                     <tbody>
@@ -314,7 +393,7 @@ const Cart = () => {
                                 color: "#e43043",
                                 zIndex: "10",
                               }}
-                              onClick={handleRemove}
+                              onClick={() => handleRemove(index)}
                             ></CircleWithCross>
                           </span>
                         </td>
@@ -406,28 +485,57 @@ const Cart = () => {
                 If 2-step-auth is enabled on your PSN account make sure to
                 disable it to prevent access problems
               </StepTwoWarningContainer>
-              <button
-                type="button"
-                id="checkout-button"
-                role="link"
-                onClick={handleClick}
-                className="pay-btn"
-                disabled={disabled}
-              >
-                Checkout with Stripe
-              </button>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Stripe style={{ height: "50px" }}></Stripe>
-                <ApplePay style={{ height: "50px" }}></ApplePay>
-                <GooglePay style={{ height: "50px" }}></GooglePay>
-                <CreditCardAlt style={{ height: "50px" }}></CreditCardAlt>
+              <div className="checkout-buttons-icons">
+                <button
+                  type="button"
+                  id="checkout-button"
+                  role="link"
+                  onClick={handleClick}
+                  className="pay-btn"
+                  disabled={disabled}
+                >
+                  Checkout with Card
+                </button>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: "10px",
+                  }}
+                >
+                  {checkout ? (
+                    <PaypalCheckout
+                      titles={titles[0]}
+                      totalPrice={totalPrice}
+                      potentialOrder={potentialOrder}
+                    ></PaypalCheckout>
+                  ) : (
+                    <button
+                      disabled={disabled}
+                      onClick={() => setCheckout(true)}
+                      className="pay-btn"
+                      style={{ backgroundColor: "#00457C" }}
+                    >
+                      Checkout with Paypal
+                    </button>
+                  )}
+                </div>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <Stripe style={{ height: "50px" }}></Stripe>
+                  <ApplePay style={{ height: "50px" }}></ApplePay>
+                  <GooglePay style={{ height: "50px" }}></GooglePay>
+                  <CreditCardAlt style={{ height: "50px" }}></CreditCardAlt>
+                </div>
               </div>
-            </div>
+            </div>{" "}
           </div>
         </div>
       </div>
+      <PostOrder></PostOrder>
       <Footer footerColor="turquoise"></Footer>
-    </>
+    </div>
   );
 };
 

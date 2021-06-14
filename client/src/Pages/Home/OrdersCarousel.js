@@ -3,13 +3,15 @@ import SwiperCore, {
   Navigation,
   Scrollbar,
   EffectCoverflow,
+  Autoplay,
 } from "swiper/core";
 
 import "swiper/swiper.scss";
 import "swiper/components/scrollbar/scrollbar.scss";
 import { orders } from "./OrdersData";
+import Img from "react-cool-img";
 
-SwiperCore.use([Navigation, Scrollbar, EffectCoverflow]);
+SwiperCore.use([Navigation, Scrollbar, EffectCoverflow, Autoplay]);
 const OrdersCarousel = () => {
   return (
     <div className="OrdersCarousel-container">
@@ -20,10 +22,15 @@ const OrdersCarousel = () => {
         slidesPerView="auto"
         scrollbar={{ draggable: true }}
         loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
+        style={{ height: "360px" }}
       >
         {orders.map((order, index) => {
           return (
@@ -34,7 +41,7 @@ const OrdersCarousel = () => {
                   display: "flex",
                   justifyContent: "center",
                   padding: "10px",
-                  minWidth: "300px",
+                  minWidth: "315px",
                 }}
               >
                 <div
@@ -42,16 +49,17 @@ const OrdersCarousel = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    padding: "10px",
-                    minWidth: "300px",
+                    padding: "5px",
+                    minWidth: "315px",
+                    height: "315px",
                   }}
                 >
                   {" "}
-                  <img
+                  <Img
                     src={order}
                     alt="completed order"
                     className="orderimg"
-                  ></img>{" "}
+                  ></Img>{" "}
                 </div>
               </div>
             </SwiperSlide>

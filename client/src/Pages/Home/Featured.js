@@ -1,5 +1,5 @@
 import featuredbooster from "../Images/featured.png";
-
+import Img from "react-cool-img";
 const featured = () => {
   return (
     <div className="featured-container">
@@ -17,17 +17,17 @@ const featured = () => {
         Featured Booster
       </h2>
       <div className="featured-wrap">
-        <img
+        <Img
           alt="featured booster"
           src={featuredbooster}
           id="featuredbooster"
-        ></img>{" "}
+        ></Img>{" "}
         <p className="desc">
           {" "}
           One of our Day 1 boosters. Top Tier Apex Legends veteran and OG. More
-          than 4000 Hours of playtime with over 1300 wins. Apex Predator every
-          season, every split. FPS experience for a decade. Trusted with First
-          Priority orders. The Best of The Best!
+          than 4000 Hours of playtime with over 4000 total wins. Apex Predator
+          every season, every split. FPS experience for a decade. Trusted with
+          First Priority orders. The Best of The Best!
         </p>
       </div>
     </div>

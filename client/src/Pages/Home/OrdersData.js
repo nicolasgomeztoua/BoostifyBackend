@@ -34,7 +34,6 @@ export const orders = [
   order16,
 ];
 const element = [];
-for (let i = 0; i < 17; i++) {
+for (let i = 0; i < orders.length; i++) {
   element.push(`order${i}`);
-  console.log(element);
 }
