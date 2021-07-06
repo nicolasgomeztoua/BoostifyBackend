@@ -20,6 +20,7 @@ const Checkout = ({
   moneyMultiplierDuo,
   moneyMultiplierStream,
   moneyMultiplierPriority,
+  legend,
 }) => {
   const dispatch = useDispatchCart();
   const addToCart = (item) => {
@@ -96,7 +97,7 @@ const Checkout = ({
 
                     kills: kills,
                     icon: KillsBoost,
-
+                    selectedLegend: Object.keys(legend),
                     filteredExtras: Object.keys(filteredExtras),
                   })
                 }

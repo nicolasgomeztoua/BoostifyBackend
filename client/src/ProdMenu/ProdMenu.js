@@ -2,10 +2,10 @@ import React from "react";
 import { MenuItems } from "../MenuItems/MenuItems";
 import { Link } from "react-router-dom";
 import "../Dropdown/Dropdown.css";
-const ProdMenu = () => {
+const ProdMenu = ({ border }) => {
   return (
     <>
-      <ul id="prodMenu">
+      <ul id="prodMenu" style={{ borderBottom: border }}>
         {MenuItems.map((item, index) => {
           return (
             <li key={index} className="MenuItemsWrapper">

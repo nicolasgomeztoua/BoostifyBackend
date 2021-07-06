@@ -326,6 +326,10 @@ const Cart = ({ history }) => {
                           </td>
                           <td>
                             <br /> <span className="thin">{element.title}</span>
+                            <br />{" "}
+                            <span className="thin">
+                              {element.selectedLegend}
+                            </span>
                             <br />
                             <span className="thin small">
                               Kills: {element.kills}

@@ -358,11 +358,10 @@ export const Testimonials = (props) => {
                         <p>
                           "My girlfriend is a bit of a bot. So i wanted to get
                           her some special badges for her bday because she still
-                          loves Apex. ProxyH came in clutch witht the 20bomb 4k
+                          loves Apex. my booster came in clutch witht the 20bomb 4k
                           in a couple hours. She was really happy with how her
                           banner looked and got tons of reactions from her gamer
-                          friends. let's just say I put on my birthday suit that
-                          day."{" "}
+                          friends. let's just say we banged."{" "}
                         </p>
                         <div className="imgBx">
                           <img src={User3} alt="testimonial-user"></img>
@@ -395,9 +394,7 @@ export const Testimonials = (props) => {
                       <div className="content">
                         <p>
                           " Saw their ad on instagram and decided to give it a
-                          go for that coveted 4000 damage. I was worried about
-                          possible ban but i made sure to not log in during the
-                          boost and the service was extremly professional. Im
+                          go for that coveted 4000 damage. the service was extremly professional im
                           super happy with the result so thanks guys. "
                         </p>
                         <div className="imgBx">

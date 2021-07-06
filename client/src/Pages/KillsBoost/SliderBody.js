@@ -10,6 +10,7 @@ import {
   InputTyped,
 } from "../RankBoost/RankedBoostProductElements";
 import Extras from "./Extras";
+import Legends from "./Legends";
 const Outline = styled.div`
   border: 10px solid #6d00ae;
   border-radius: 50px;
@@ -91,9 +92,7 @@ const SliderBody = () => {
           </InitialRank>
         </SliderContainer>
       </SliderDiv>
-      <Extras price={price} kills={kills}>
-        {" "}
-      </Extras>
+      <Legends price={price} kills={kills}></Legends>
     </Outline>
   );
 };

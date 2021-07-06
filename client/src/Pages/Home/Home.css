@@ -53,6 +53,7 @@
   border: none;
   background: none;
   padding: 0;
+  
   color: var(--button-text-color);
   cursor: pointer;
   /* Clean style */
@@ -61,7 +62,7 @@
   --button-text-color-hover: black;
   --border-color: #7d8082;
   --button-background-color: black;
-  --highlight-color: #ece8e1;
+  --highlight-color: #fff;
   --button-inner-border-color: transparent;
   --button-bits-color: var(--background-color);
   --button-bits-color-hover: var(--button-background-color);

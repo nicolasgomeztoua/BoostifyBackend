@@ -24,7 +24,7 @@ export const MenuItems = [
   },
   {
     icon: AcheivementBadges,
-    title: "Acheivement Badges",
+    title: "Achievement Badges",
     path: "/acheivement-badges",
     cName: "dropdown-link",
     cNameIcon: "Menu-badges",

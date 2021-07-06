@@ -14,7 +14,7 @@ import {
 } from "../RankBoost/RankedBoostProductElements";
 import styled from "styled-components";
 import Checkout from "./Checkout";
-const Extras = ({ price, kills }) => {
+const Extras = ({ price, kills, legend }) => {
   const [activeDuo, setActiveDuo] = useState(false);
   const [activeStream, setActiveStream] = useState(false);
   const [activeOffline, setActiveOffline] = useState(false);
@@ -139,6 +139,7 @@ const Extras = ({ price, kills }) => {
         moneyMultiplierDuo={moneyMultiplierDuo}
         moneyMultiplierStream={moneyMultiplierStream}
         moneyMultiplierPriority={moneyMultiplierPriority}
+        legend={legend}
       ></Checkout>
     </>
   );

@@ -22,7 +22,7 @@ import WhatIsBoosting from "./WhatIsBoosting";
 import WhyUs from "./WhyUs";
 import Featured from "./Featured";
 import { Helmet } from "react-helmet";
-
+import Banner from "../../Banner/Banner";
 import Stats from "./stats";
 const Home = () => {
   const [windowInnerWidth, setwindowInnerWidth] = useState(window.innerWidth);
@@ -220,7 +220,7 @@ const Home = () => {
           </div>
         </div>
       </Parallax>
-
+      <Banner></Banner>
       <WhoAreWe></WhoAreWe>
       <WhatIsBoosting></WhatIsBoosting>
       <WhyUs></WhyUs>
