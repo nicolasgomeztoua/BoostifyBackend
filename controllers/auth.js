@@ -230,10 +230,7 @@ a[x-apple-data-detectors] {
 
     sendToken(user, 201, res);
   } catch (error) {
-    res.status(500).json({
-      sucess: false,
-      error: error.message,
-    });
+    next(error);
   }
 };
 
