@@ -639,7 +639,10 @@ a[x-apple-data-detectors] {
     });
     res.status(201).json({ sucess: true, order: order });
   } catch (error) {
-    next(error);
+    res.status(500).json({
+      sucess: false,
+      error: error.message,
+    });
   }
 };
 
