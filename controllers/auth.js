@@ -10,7 +10,7 @@ const Reviews = require("../models/Reviews");
 const sendEmailOrder = require("../utils/sendEmailOrder");
 
 exports.register = async (req, res, next) => {
-  const { username, email, password, special, } = req.body;
+  const { username, email, password, special, dateCreated } = req.body;
   const message = `
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="font-family:'source sans pro', 'helvetica neue', helvetica, arial, sans-serif">
@@ -221,6 +221,7 @@ a[x-apple-data-detectors] {
       email,
       password,
       special,
+      dateCreated,
     });
     await sendEmailRegister({
       to: email,

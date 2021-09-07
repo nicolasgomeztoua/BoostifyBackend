@@ -23,10 +23,11 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
+  dateCreated: { type: Date },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   user_id: { type: String, default: uuid() },
-  special: { type: Boolean, default:false},
+  special: { type: Boolean, default: false },
 });
 
 UserSchema.pre("save", async function (next) {

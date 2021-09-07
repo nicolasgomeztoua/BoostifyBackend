@@ -10,7 +10,6 @@ const {
   createorder,
   supportTickets,
   reviews,
-  profile,
   missingOrder,
 } = require("../controllers/auth");
 
