@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  dateCreated: { type: Date },
+  dateCreated: String,
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   user_id: { type: String, default: uuid() },
