@@ -30,7 +30,7 @@ router.route("/reviews").post(reviews);
 
 router.route("/missing-order").post(missingOrder);
 
-router.route("/getReviews").get(getReviews);
+router.route("/get-reviews").get(getReviews);
 
 
 module.exports = router;
