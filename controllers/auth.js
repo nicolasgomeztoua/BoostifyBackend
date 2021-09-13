@@ -446,7 +446,7 @@ a[x-apple-data-detectors] {
                       <td align="left" style="Margin:0;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px"> 
                        <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:500px" class="cke_show_border" cellspacing="1" cellpadding="1" border="0" align="left" role="presentation"> 
                          ${items.map((elements, index) => {
-                           return `<tr style="border-collapse:collapse">
+    return `<tr style="border-collapse:collapse">
                                <td
                                  style="padding:5px 10px 5px 0;Margin:0"
                                  width="80%"
@@ -472,7 +472,7 @@ a[x-apple-data-detectors] {
                                  
                                </td>
                              </tr>`;
-                         })}
+  })}
                        
                       
                         
@@ -1027,3 +1027,11 @@ const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   res.status(statusCode).json({ sucess: true, token });
 };
+
+exports.getReviews = async (req, res) => {
+  const reviews = await Reviews.find({});
+
+  try {
+    res.status(200).json({ sucess: true, reviews: reviews });
+  } catch (error) { res.status(500).json({ err: error }); }
+}

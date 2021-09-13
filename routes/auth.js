@@ -11,6 +11,7 @@ const {
   supportTickets,
   reviews,
   missingOrder,
+  getReviews,
 } = require("../controllers/auth");
 
 router.route("/register").post(register);
@@ -28,5 +29,8 @@ router.route("/supportTickets").post(supportTickets);
 router.route("/reviews").post(reviews);
 
 router.route("/missing-order").post(missingOrder);
+
+router.route("/getReviews").get(getReviews);
+
 
 module.exports = router;
