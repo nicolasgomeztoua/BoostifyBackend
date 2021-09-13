@@ -1031,11 +1031,11 @@ const sendToken = (user, statusCode, res) => {
 exports.getReviews = async (req, res, next) => {
   try {
     const reviews = await Reviews.find({},
-      (error, data) => {
+      (error, reviews) => {
         if (error) {
           res.status(500).json({ err: error });
         } else {
-          res.status(200).json({ data: data });
+          res.status(200).json({ reviews: reviews });
         }
       }
     );
