@@ -1028,10 +1028,18 @@ const sendToken = (user, statusCode, res) => {
   res.status(statusCode).json({ sucess: true, token });
 };
 
-exports.getReviews = async (req, res) => {
-  const reviews = await Reviews.find({});
-
+exports.getReviews = async (req, res, next) => {
   try {
-    res.status(200).json({ sucess: true, reviews: reviews });
-  } catch (error) { res.status(500).json({ err: error }); }
+    const reviews = await Reviews.find(
+      (error, data) => {
+        if (error) {
+          res.status(500).json({ err: error });
+        } else {
+          res.status(200).json({ data: data });
+        }
+      }
+    );
+  } catch (error) {
+    next(error);
+  }
 }
