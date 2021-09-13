@@ -5,6 +5,7 @@ const ReviewsSchema = new mongoose.Schema({
   rating: Number,
   review: String,
   main: String,
+  dateCreated: String,
 });
 const Reviews = mongoose.model("Review", ReviewsSchema);
 

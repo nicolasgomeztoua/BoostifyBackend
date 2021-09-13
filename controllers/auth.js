@@ -657,13 +657,14 @@ exports.supportTickets = async (req, res, next) => {
   }
 };
 exports.reviews = async (req, res, next) => {
-  const { name, review, rating, main } = req.body;
+  const { name, review, rating, main, dateCreated } = req.body;
   try {
     const reviews = await Reviews.create({
       name,
       review,
       rating,
       main,
+      dateCreated,
     });
     res.status(201).json({ sucess: true, review: reviews });
   } catch (error) {
