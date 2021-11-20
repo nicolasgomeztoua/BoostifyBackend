@@ -21,7 +21,7 @@ const OrderSchema = new mongoose.Schema({
   userId: { type: String, default: "no Id" },
   progress: { type: Number, default: 0 },
   kills: { type: [String], default: ["NO KILLS BOOST"] },
-  placementMatches: Number,
+  placementMatches: [Number],
 });
 const Order = mongoose.model("Order", OrderSchema);
 
