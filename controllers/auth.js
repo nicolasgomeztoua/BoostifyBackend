@@ -58,6 +58,7 @@ exports.createorder = async (req, res, next) => {
     kills,
     placementMatches,
   } = req.body;
+  console.log(req.body);
   const message = createOrderEmail(totalPrice, items, orderId, selectedLegend);
   try {
     const order = await Order.create({
