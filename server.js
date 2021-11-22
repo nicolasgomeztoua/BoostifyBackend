@@ -21,7 +21,9 @@ app.post("/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
+      
       {
+        orderDetails:items[2].items,
         price_data: {
           currency: "usd",
 
@@ -29,7 +31,7 @@ app.post("/create-checkout-session", async (req, res) => {
             name: "Boostify boost",
 
             images: ["https://i.imgur.com/RRat6Bl.png"],
-            items:[items[2].items]
+            
           },
 
           unit_amount: items[1].price,
