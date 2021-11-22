@@ -250,7 +250,7 @@ const sendToken = (user, statusCode, res) => {
 
 exports.getReviews = async (req, res, next) => {
   try {
-    const reviews = await Reviews.find({},
+    await Reviews.find({},
       (error, reviews) => {
         if (error) {
           res.status(500).json({ err: error });
