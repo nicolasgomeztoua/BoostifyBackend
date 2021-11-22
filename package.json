@@ -1,10 +1,11 @@
 {
-  "name": "password_reset",
+  "name": "Boostify Backend",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "devsart":"nodemon server"
   },
   "keywords": [],
   "author": "",
