@@ -7,7 +7,6 @@ const {
   login,
   forgotpassword,
   resetpassword,
-  createorder,
   supportTickets,
   reviews,
   missingOrder,
@@ -21,8 +20,6 @@ router.route("/login").post(login);
 router.route("/forgotpassword").post(forgotpassword);
 
 router.route("/passwordreset/:resetToken").put(resetpassword);
-
-router.route("/createorder").post(createorder);
 
 router.route("/supportTickets").post(supportTickets);
 

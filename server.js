@@ -4,6 +4,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
+const endpointSecret = process.env.ENDPOINTSECRET;
 
 const stripe = require("stripe")(process.env.SK);
 //Conect DB
@@ -12,14 +13,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/auth", require("./routes/routes"));
 app.use("/api/private", require("./routes/private"));
 
 app.post("/create-checkout-session", async (req, res) => {
   const { items } = req.body;
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-
     line_items: [
       {
         price_data: {
@@ -41,12 +41,58 @@ app.post("/create-checkout-session", async (req, res) => {
     mode: "payment",
 
     success_url: `${"https://boostify.es/success"}?success=true`,
-
+    customer_email: items.email,
     cancel_url: `${"https://boostify.es/cart"}?canceled=true`,
   });
 
   res.json({ id: session.id });
+
 });
+
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+  const sig = request.headers['stripe-signature'];
+  console.log(sig)
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+  } catch (err) {
+    response.status(400).send(`Webhook Error: ${err.message}`);
+
+    return;
+  }
+
+  // Handle the event
+  switch (event.type) {
+    case 'checkout.session.async_payment_failed': {
+      const session = event.data.object;
+      console.log(session)
+      break;
+    }
+    case 'checkout.session.async_payment_succeeded':{
+      const session = event.data.object;
+      console.log(session)
+      break;
+    }
+    case 'checkout.session.completed':{
+      const session = event.data.object;
+      console.log(session)
+      break;
+    }
+    case 'checkout.session.expired':{
+      const session = event.data.object;
+      console.log(session)
+      break;
+    }
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);S
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  return response.json({sucess:true});
+});
+
 //Error Handdler (should be the last piece of middleware)
 app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
