@@ -4,14 +4,14 @@ const express = require("express");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
-const endpointSecret = process.env.ENDPOINTSECRET;
 
 const stripe = require("stripe")(process.env.SK);
 //Conect DB
 connectDB();
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use('/webhook', express.raw({type: "*/*"}))
+app.use(express.json())
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
@@ -50,8 +50,8 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 
 app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+  const endpointSecret = process.env.ENDPOINTSECRET;
   const sig = request.headers['stripe-signature'];
-  console.log(sig)
   let event;
 
   try {
@@ -86,7 +86,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
     }
     // ... handle other event types
     default:
-      console.log(`Unhandled event type ${event.type}`);S
+      console.log(`Unhandled event type ${event.type}`);
   }
 
   // Return a 200 response to acknowledge receipt of the event
