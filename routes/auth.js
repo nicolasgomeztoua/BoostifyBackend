@@ -32,5 +32,4 @@ router.route("/get-reviews").get(getReviews);
 
 router.route("/createorder").post(createorder);
 
-
 module.exports = router;
