@@ -14,7 +14,6 @@ const OrderSchema = new mongoose.Schema({
   dateCreated: { type: Date },
   extrasArr: [[]],
   orderId: String,
-  region: String,
   platform: String,
   badgesExtras: [String],
   rankedImg: [String],
