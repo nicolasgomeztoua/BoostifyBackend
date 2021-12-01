@@ -8,6 +8,7 @@ const crypto = require("crypto");
 const Order = require("./models/Order");
 const sendEmailOrder = require("./utils/sendEmailOrder");
 const {createOrderEmail} = require("./templates/emails");
+const { returnSuccessToken } = require("./utils/returnSuccessToken");
 
 const stripe = require("stripe")(process.env.SK);
 //Conect DB
@@ -44,9 +45,9 @@ app.post("/create-checkout-session", async (req, res) => {
 
     mode: "payment",
 
-    success_url: `${"https://boostify.es/success"}?success=true`,
+    success_url: `${"https://boostify.es/success"}?hash=${returnSuccessToken()}`,
     customer_email: items.email,
-    cancel_url: `${"https://boostify.es/cart"}?canceled=true`,
+    cancel_url: `${"https://boostify.es/cart"}?hash=${returnSuccessToken()}`,
     metadata: orderDetails,
   });
 
