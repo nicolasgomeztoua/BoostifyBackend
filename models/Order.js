@@ -21,7 +21,7 @@ const OrderSchema = new mongoose.Schema({
   progress: { type: Number, default: 0 },
   kills: { type: [String], default: ["NO KILLS BOOST"] },
   placementMatches: [Number],
-  boosterDiscord: {type: String, default:"kyatoro#0846"}
+  boosterDiscord: {type: String, default:"No Booster Assigned Yet"}
 });
 const Order = mongoose.model("Order", OrderSchema);
 
