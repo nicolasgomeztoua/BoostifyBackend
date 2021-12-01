@@ -47,7 +47,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
     success_url: `${"https://boostify.es/success"}?hash=${returnSuccessToken()}&gclid=${orderDetails.gclid}`,
     customer_email: items.email,
-    cancel_url: `${"https://boostify.es/cart"}?gclid=${orderDetails.gclid}`,
+    cancel_url: `${"https://boostify.es/cart"}?gclid=${orderDetails.gclid}&hash=${returnSuccessToken()}`,
     metadata: orderDetails,
   });
 
