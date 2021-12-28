@@ -7,7 +7,7 @@ const cors = require("cors");
 const crypto = require("crypto");
 const Order = require("./models/Order");
 const sendEmailOrder = require("./utils/sendEmailOrder");
-const {createOrderEmail} = require("./templates/emails");
+const { createOrderEmail } = require("./templates/emails");
 const { returnSuccessToken } = require("./utils/returnSuccessToken");
 
 const stripe = require("stripe")(process.env.SK);
@@ -45,7 +45,9 @@ app.post("/create-checkout-session", async (req, res) => {
 
     mode: "payment",
 
-    success_url: `${"https://boostify.es/success"}?hash=${returnSuccessToken()}&gclid=${orderDetails.gclid}`,
+    success_url: `${"https://boostify.es/success"}?hash=${returnSuccessToken()}&gclid=${
+      orderDetails.gclid
+    }`,
     customer_email: items.email,
     cancel_url: `${"https://boostify.es/cart"}?gclid=${orderDetails.gclid}`,
     metadata: orderDetails,
@@ -62,13 +64,27 @@ app.post(
     const sig = request.headers["stripe-signature"];
     let event;
 
-    try {
+    /*    try {
       event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
     } catch (err) {
       response.status(400).send(`Webhook Error: ${err.message}`);
 
       return;
-    }
+    } */
+    event.type = "checkout.session.completed";
+    event.data.object = {
+      metadata: {
+        title: '"Rank Boost"',
+        price: '"1.25"',
+        firstValue: '"100"',
+        secondValue: '"200"',
+        icon: '"/static/media/Ranked_Tier1_Bronze.9637f42e.jpeg"',
+        extrasArr:
+          '[["DuoQueue",false],["Offline",false],["Stream",false],["priority",false]]',
+        filteredExtras: "[]",
+        gclid: "",
+      },
+    };
 
     // Handle the event
     switch (event.type) {
@@ -85,55 +101,84 @@ app.post(
       case "checkout.session.completed": {
         const session = event.data.object;
         let checkoutSession = async (resolve, reject) => {
-          let sesh =  await stripe.checkout.sessions.retrieve(session.id);
-          return sesh
+          let sesh = await stripe.checkout.sessions.retrieve(session.id);
+          return sesh;
         };
         checkoutSession().then(async function (response) {
+          try {
             let obj = response.metadata;
-            Object.keys(obj).forEach(function (key) { obj[key] = JSON.parse(obj[key]); });
-
-            const {
-              titles, prices, selectedLegend, selectedPopBadges, selectedExtraBadges, firstValue, secondValue, PSNemail, PSNPass, region, dateCreated, extrasArr, items, totalPrice, platform, badgesExtras, rankedImg, userId, kills, placementMatches,
-            } = obj;
-            const orderId = crypto.randomBytes(4).toString("hex");
-            const message = createOrderEmail(totalPrice, items, orderId, selectedLegend);
-            try {
-              const order = await Order.create({
-                titles,
-                prices,
-                selectedLegend,
-                selectedPopBadges,
-                selectedExtraBadges,
-                firstValue,
-                secondValue,
-                PSNemail,
-                PSNPass,
-                region,
-                dateCreated,
-                extrasArr,
-                orderId,
-                platform,
-                badgesExtras,
-                rankedImg,
-                userId,
-                kills,
-                placementMatches,
-              });
-              sendEmailOrder({
-                to: PSNemail,
-                subject: "Order confirmation",
-                text: message,
-              });
-              sendEmailOrder({
-                to: "support@boostify.es",
-                subject: "New order",
-                text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform}`,
-              });
-              res.status(201).json({ sucess: true, order: order });
-            } catch (error) {
-              console.log(error, "failed to create order");
-            }
-          })
+            Object.keys(obj).forEach(function (key) {
+              obj[key] = JSON.parse(obj[key]);
+            });
+          } catch (error) {
+            console.log(error);
+          }
+          const {
+            titles,
+            prices,
+            selectedLegend,
+            selectedPopBadges,
+            selectedExtraBadges,
+            firstValue,
+            secondValue,
+            PSNemail,
+            PSNPass,
+            region,
+            dateCreated,
+            extrasArr,
+            items,
+            totalPrice,
+            platform,
+            badgesExtras,
+            rankedImg,
+            userId,
+            kills,
+            placementMatches,
+          } = obj;
+          const orderId = crypto.randomBytes(4).toString("hex");
+          const message = createOrderEmail(
+            totalPrice,
+            items,
+            orderId,
+            selectedLegend
+          );
+          try {
+            const order = await Order.create({
+              titles,
+              prices,
+              selectedLegend,
+              selectedPopBadges,
+              selectedExtraBadges,
+              firstValue,
+              secondValue,
+              PSNemail,
+              PSNPass,
+              region,
+              dateCreated,
+              extrasArr,
+              orderId,
+              platform,
+              badgesExtras,
+              rankedImg,
+              userId,
+              kills,
+              placementMatches,
+            });
+            sendEmailOrder({
+              to: PSNemail,
+              subject: "Order confirmation",
+              text: message,
+            });
+            sendEmailOrder({
+              to: "support@boostify.es",
+              subject: "New order",
+              text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform}`,
+            });
+            res.status(201).json({ sucess: true, order: order });
+          } catch (error) {
+            console.log(error, "failed to create order");
+          }
+        });
         break;
       }
       case "checkout.session.expired": {
