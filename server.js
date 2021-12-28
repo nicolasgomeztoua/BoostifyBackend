@@ -129,7 +129,7 @@ app.post(
                 subject: "New order",
                 text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform}`,
               });
-              res.status(201).json({ sucess: true, order: order });
+              response.status(201).json({ sucess: true, order: order });
             } catch (error) {
               console.log(error, "failed to create order");
             }
