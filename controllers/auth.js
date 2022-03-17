@@ -1,4 +1,3 @@
-
 const User = require("../models/User");
 
 const ErrorResponse = require("../utils/errorResponse");
@@ -9,10 +8,14 @@ const Order = require("../models/Order");
 const supportTickets = require("../models/supportTickets");
 const Reviews = require("../models/Reviews");
 const sendEmailOrder = require("../utils/sendEmailOrder");
-const { register, createOrderEmail, forgotPasswordEmail } = require("../templates/emails");
+const {
+  register,
+  createOrderEmail,
+  forgotPasswordEmail,
+} = require("../templates/emails");
 
 exports.register = async (req, res, next) => {
-  const { username, email, password, special, dateCreated } = req.body;
+  const { username, email, password, special, dateCreated, image } = req.body;
   const message = register(username, email);
   try {
     const user = await User.create({
@@ -21,6 +24,7 @@ exports.register = async (req, res, next) => {
       password,
       special,
       dateCreated,
+      image,
     });
     await sendEmailRegister({
       to: email,
@@ -93,10 +97,9 @@ exports.createorder = async (req, res, next) => {
       text: `New order of ${titles} by ${PSNemail} Of ${prices}$ of the platform ${platform}`,
     });
     res.status(201).json({ sucess: true, order: order });
-  } catch (error) { 
-    console.log(error, "failed to create order")
+  } catch (error) {
+    console.log(error, "failed to create order");
     next(error);
-   
   }
 };
 
@@ -252,16 +255,14 @@ const sendToken = (user, statusCode, res) => {
 
 exports.getReviews = async (req, res, next) => {
   try {
-    await Reviews.find({},
-      (error, reviews) => {
-        if (error) {
-          res.status(500).json({ err: error });
-        } else {
-          res.status(200).json({ reviews: reviews });
-        }
+    await Reviews.find({}, (error, reviews) => {
+      if (error) {
+        res.status(500).json({ err: error });
+      } else {
+        res.status(200).json({ reviews: reviews });
       }
-    );
+    });
   } catch (error) {
     next(error);
   }
-}
+};

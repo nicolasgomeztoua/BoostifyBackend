@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpire: Date,
   user_id: { type: String, default: uuid() },
   special: { type: Boolean, default: false },
+  image: String,
 });
 
 UserSchema.pre("save", async function (next) {
