@@ -6,6 +6,7 @@ const ReviewsSchema = new mongoose.Schema({
   review: String,
   main: String,
   dateCreated: String,
+  userImg: String,
 });
 const Reviews = mongoose.model("Review", ReviewsSchema);
 

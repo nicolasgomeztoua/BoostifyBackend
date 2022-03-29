@@ -116,7 +116,7 @@ exports.supportTickets = async (req, res, next) => {
   }
 };
 exports.reviews = async (req, res, next) => {
-  const { name, review, rating, main, dateCreated } = req.body;
+  const { name, review, rating, main, dateCreated, userImg } = req.body;
   try {
     const reviews = await Reviews.create({
       name,
@@ -124,6 +124,7 @@ exports.reviews = async (req, res, next) => {
       rating,
       main,
       dateCreated,
+      userImg,
     });
     res.status(201).json({ sucess: true, review: reviews });
   } catch (error) {
